@@ -1,0 +1,10 @@
+server:
+  port: 9516
+  servlet:
+    context-path: /index
+spring:
+  cloud:
+#    添加到注册中心
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
