@@ -1,10 +1,15 @@
 server:
   port: 9516
   servlet:
-    context-path: /index
+    context-path: /manage
 spring:
+  application:
+    name: manage
   cloud:
-#    添加到注册中心
+    #    添加到注册中心
     nacos:
       config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+      discovery:
         server-addr: 127.0.0.1:8848

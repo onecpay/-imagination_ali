@@ -63,6 +63,7 @@
         <shiro-th-version>2.0.0</shiro-th-version>
         <alibaba.version>0.9.0.RELEASE</alibaba.version>
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
+        <alibaba.cps.version>1.6.0</alibaba.cps.version>
         <defaultLabel>develop</defaultLabel>
     </properties>
 

@@ -13,19 +13,17 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class PaymentServiceApplicationTests {
+public class PaymentApplicationTest {
 
     @Autowired
     BusinessRouteService businessRouteService;
 
-    @Test
-    public void contextLoads() {
-
-       System.out.println("测试数据：开始：{}" + DateUtils.getBusinsessDay());
-
-       List<BusinessRoute> businessRoutes = businessRouteService.businessList();
-
-       System.out.println("返回的数据是：" + businessRoutes);
-    }
+//    @Test
+//    public void contextLoads() {
+//
+//       System.out.println("测试数据：开始：{}" + DateUtils.getBusinsessDay());
+//       List<BusinessRoute> businessRoutes = businessRouteService.businessList();
+//       System.out.println("返回的数据是：" + businessRoutes);
+//    }
 
 }

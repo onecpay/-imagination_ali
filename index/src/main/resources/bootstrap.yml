@@ -3,8 +3,24 @@ server:
   servlet:
     context-path: /index
 spring:
+  application:
+    name: index
   cloud:
 #    添加到注册中心
     nacos:
       config:
         server-addr: 127.0.0.1:8848
+        file-extension: yaml
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      eager: true
+      transport:
+        dashboard: 127.0.0.1:8080
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            dataId: ${spring.application.name}-flow-rules
+            data-type: json
+            rule-type: flow
