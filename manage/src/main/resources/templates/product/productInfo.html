@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="tools/head :: headMenu" th:with="title='小样主页面'"></head>
+<body class="layui-layout-body">
+<table class="layui-hide" id="productDetail" lay-filter="productDetail"></table>
+
+<script type="text/html" id="toolbarProduct">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-primary" lay-event="addProduct">新增产品</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    </div>
+</script>
+
+<script type="text/html" id="switchProduct">
+    <!-- 这里的 checked 的状态只是演示 -->
+    <input type="checkbox" name="userStatus" value="{{d.userStatus}}" id="{{d.id}}" lay-skin="switch"
+           lay-text="冻结|正常" lay-filter="productFilter" {{ d.userStatus=='FREEZE' ? 'checked' : '' }}>
+</script>
+
+
+<script type="text/javascript" th:inline="none">
+    layui.use(['element', 'table', 'layer'], function () {
+        var $ = layui.jquery, form = layui.form, table = layui.table, layer = layui.layer;
+
+        /* 展示产品数据表*/
+        table.render({
+            id: 'productDetail',
+            elem: '#productDetail',
+            url: '/manage/product/productList',
+            toolbar: '#toolbarProduct',
+            page: true,
+            title: '产品信息明细',
+            cols: [[
+                {field: 'type', title: '产品类型', width: 150},
+                {field: 'id', title: 'ID', sort: true, fixed: 'left', width: 100},
+                {field: 'code', title: '产品编号', sort: true, fixed: 'left', width: 120},
+                {field: 'name', title: '产品名称', width: 150},
+                {field: 'amount', title: '结算金额', width: 150},
+                {field: 'customer_price', title: '会员结算', width: 150},
+                {field: 'price', title: '非会员结算', width: 150},
+                {field: 'updateTime', title: '产品修改日期', width: 150},
+                {field: 'lock', title: '是否下架', width: 110, toolbar: '#switchProduct', unresize: true}
+            ]]
+        });
+        /* 监听冻结操作*/
+        form.on('switch(productFilter)', function (obj) {
+            var userStatus = this.value;
+            if (this.value === 'FREEZE') {
+                userStatus = 'AVAILABLE';
+            } else {
+                userStatus = 'FREEZE';
+            }
+            var data = {"id": this.id, "status": userStatus};
+            $.ajax({
+                async: true,
+                type: 'post',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(data),
+                dataType: 'json',
+                url: "/manage/product/editProduct",
+                success: function (result) {
+                    layer.alert("修改结果：" + result)
+                },
+                error: function (result) {
+                    layer.alert("请求修改异常：" + result)
+                }
+            });
+            /*执行方法重载*/
+            table.reload('productDetail', {
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+                , where: {}
+            })
+            return false; // 不用跳转页面
+        })
+
+        /* 监听头部工具栏事件*/
+        table.on('toolbar(productDetail)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'addProduct': /* 弹框添加产品*/
+                    layer.open({
+                        type: 2
+                        , title: "产品新增"
+                        , closeBtn: false
+                        , area: ['720px', '680px']
+                        , shade: 0
+                        , id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                        , btn: ['取消添加']
+                        , btnAlign: 'c'
+                        , moveType: 0 //拖拽模式，0或者1
+                        , content: '/manage/product/addProduct'
+                    });
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    alert(data);
+                    layer.msg('选中了：' + data.length + ' 个');
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选' : '未全选');
+                    break;
+            }
+            ;
+        });
+
+        /* 触发弹框事件*/
+        var active = {
+            addProduct: function () { /* 添加员工信息*/
+            },
+        }
+        /* 触发点击事件*/
+        $('.layui-btn-container .layui-btn .layui-btn-sm').on('click', function () {
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+    })
+</script>
+</body>
+</html>
+      

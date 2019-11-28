@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer th:fragment="navigation">
+    <div class="weui-tabbar">
+        <a href="#index_text" class="weui-tabbar__item weui-bar__item_on">
+            <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>
+            <div class="weui-tabbar__icon">
+                <img th:src="@{/static/image/icon/index_footbl_left_1.jpg}" alt="">
+            </div>
+            <p class="weui-tabbar__label">中心</p>
+        </a>
+
+        <a href="#index_" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <img th:src="@{/static/image/icon/index_footbl_left_2.jpg}" alt="">
+            </div>
+            <p class="weui-tabbar__label">三方</p>
+        </a>
+
+        <a href="#index_chat_center" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <img th:src="@{/static/image/icon/index_footbl_left_3.jpg}" alt="">
+            </div>
+            <p class="weui-tabbar__label">言</p>
+        </a>
+
+        <a href="#index_personal_center" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <img th:src="@{/static/image/icon/index_footbl_left_4.jpg}" alt="">
+            </div>
+            <p class="weui-tabbar__label">吾</p>
+        </a>
+    </div>
+</footer>
+</body>
+</html>

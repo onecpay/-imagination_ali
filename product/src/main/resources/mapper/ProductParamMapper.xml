@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.product.mapper.ProductParamMapper">
+  <resultMap id="BaseResultMap" type="com.example.product.entity.ProductParam">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="stars" jdbcType="INTEGER" property="stars" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="serial_url" jdbcType="VARCHAR" property="serialUrl" />
+    <result column="need_id" jdbcType="VARCHAR" property="needId" />
+    <result column="amount_type" jdbcType="VARCHAR" property="amountType" />
+    <result column="name_type" jdbcType="VARCHAR" property="nameType" />
+    <result column="phone_type" jdbcType="VARCHAR" property="phoneType" />
+    <result column="id_type" jdbcType="VARCHAR" property="idType" />
+    <result column="channel_type" jdbcType="CHAR" property="channelType" />
+    <result column="share_image" jdbcType="VARCHAR" property="shareImage" />
+  </resultMap>
+
+  <select id="selectParamCode" parameterType="string" resultMap="BaseResultMap">
+      select d.serial_url,d.need_id,d.amount_type,d.name_type,d.phone_type,d.id_type,d.channel_type,d.share_image
+      from t_product_param d
+      where d.code =#{code,jdbcType=VARCHAR}
+  </select>
+</mapper>

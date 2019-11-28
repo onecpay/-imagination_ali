@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<body>
+<footer th:fragment="leftMenu">
+    <!--导航栏-->
+    <div class="tpl-left-sidebar">
+        <ul>
+            <li class="logo">
+                <img class="user-upload" th:src="@{/static/images/4a251abe82900c79733daa753664f701.jpg}" alt="admin"
+                     title="admin">
+                <span>小样视界前台</span>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{/common/index/index}" class="a-item"><i
+                        class="fa fa-home nav-icon"></i><span>首页</span></a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{/common/auth/auth_index}" class="a-item"><i
+                        class="fa fa-users nav-icon"></i><span>权限管理</span></a>
+                <ul class="nav-child-item has-child">
+                    <div class="nav-child-list">
+                        <li><a th:href="@{/common/auth/auth_index}"><i class="fa fa-user-secret" aria-hidden="true"></i>权限设置</a>
+                        </li>
+                        <li><a th:href="@{/common/role/role}"><i class="fa fa-users"
+                                                                 aria-hidden="true"></i>角色设置</a>
+                        </li>
+                        <li><a th:href="@{/common/user/user}"><i class="fa fa-user" aria-hidden="true"></i>用户管理</a></li>
+                    </div>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="" class="a-item"><i class="fa fa-fire nav-icon"></i><span>产品中心</span></a>
+                <ul class="nav-child-item has-child">
+                    <div class="nav-child-list">
+                        <li><a th:href="@{/common/product/productInfo}"><i class="fa fa-dashboard "
+                                                                           aria-hidden="true"></i>产品列表</a></li>
+                    </div>
+                </ul>
+            </li>
+            <div class="sidebar-footer">
+                <ul class="clearfix">
+                    <a href="javascript:;" data-title="消息"><i class="fa fa-bell-o"></i><span
+                            class="badge">99+</span></a>
+                    <a href="javascript:;" class="dashboard" tag="style-bar" data-title="配色方案"> <i
+                            class="fa fa-dashboard "></i></a>
+                    <a href="javascript:;" class="user" tag="user-bar" data-title="个人中心"><i
+                            class="fa fa-user"></i></a>
+                    <a href="javascript:;" data-title="公众号"><i class="fa fa-wechat"></i></a>
+                </ul>
+            </div>
+        </ul>
+    </div>
+
+</footer>
+</body>
+</html>

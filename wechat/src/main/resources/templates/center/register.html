@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="tools/head :: headMenu" th:with="title='用户登录页面'"></head>
+<link rel="stylesheet" th:href="@{/static/css/admin/admin.css}">
+<script type="text/javascript" th:inline="javascript" th:src="@{/static/js/admin/admin.js}">
+    /*<![CDATA[*/
+    /*]]>*/
+</script>
+<body>
+<div class="logo"><img th:src="@{/static/image/logo.jpg}"/></div>
+<div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">用户昵称</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" name="customerName" placeholder="输入用户昵称"/>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">设置密码</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="password" name="password" id="password" placeholder="设置登录密码"
+                       onblur="passwordStrong()"/>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">确认密码</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="password" name="rePassword" id="rePassword"
+                       placeholder="确认登录密码" onblur="checkPassword()"/>
+            </div>
+        </div>
+
+        <div class="weui-cell weui-cell_vcode">
+            <div class="weui-cell__hd">
+                <label class="weui-label">手机号</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="tel" name="phone" required id="phone" placeholder="银行预留手机号"
+                       onblur="checkPhone()">
+            </div>
+            <div class="weui-cell__ft">
+                <button class="weui-vcode-btn" onclick="requestCode()" id="requestSm">获取验证码</button>
+            </div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" required name="smsCode" id="smsCode" placeholder="请输入验证码"/>
+            </div>
+        </div>
+    </div>
+    <input type="text" value="templateId_reg" id="type" name="type" style="display: none"/>
+    <label for="weuiAgree" class="weui-agree">
+        <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox"/>
+        <label class="weui-agree__text">阅读并同意</label><a href="readme.html">《相关条款》</a>
+    </label>
+    <div class="weui-btn-area">
+        <a class="weui-btn weui-btn_primary" onclick="doRegister()" id="registerCustomer">确&nbsp;&nbsp;&nbsp;定</a>
+    </div>
+    <!--此处引入底部渲染内容  -->
+    <div th:replace="tools/footer::footerMenu"></div>
+</div>
+</body>
+
+</html>

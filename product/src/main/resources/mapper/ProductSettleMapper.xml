@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.product.mapper.ProductSettleMapper">
+  <resultMap id="BaseResultMap" type="com.example.product.entity.ProductSettle">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="customer_price" jdbcType="DECIMAL" property="customerPrice" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="settle_period" jdbcType="INTEGER" property="settlePeriod" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="loans_fee" jdbcType="DECIMAL" property="loansFee" />
+    <result column="loans_max_amount" jdbcType="DOUBLE" property="loansMaxAmount" />
+  </resultMap>
+
+  <select id="selectSetterCode" parameterType="string" resultMap="BaseResultMap">
+      select d.customer_price,d.price,d.settle_period,d.loans_fee,d.loans_max_amount
+      from t_product_settle d
+      where d.code =#{code,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,31 @@
+server:
+  port: 9516
+  servlet:
+    context-path: /wechat
+spring:
+  cloud:
+    config:
+      name: wechat
+      profile: local
+      label: develop
+      discovery:
+        enabled: true
+        service-id: config
+#    添加到注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9500/eureka/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${eureka.instance.ip-address}:${spring.application.name}:${eureka.instance.non-secure-port}
+    ip-address: 127.0.0.1
+    non-secure-port: 9516
+    #    配置admin 监控
+    metadata-map:
+      management:
+        context-path: ${server.servlet.context-path}/actuator
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: ${server.servlet.context-path}/actuator/health
+    home-page-url-path: ${server.servlet.context-path}
+    status-page-url-path: ${server.servlet.context-path}/actuator/info

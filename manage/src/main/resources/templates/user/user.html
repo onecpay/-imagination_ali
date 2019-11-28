@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="tools/head :: headMenu" th:with="title='小样主页面'"></head>
+<body>
+<div class="tm-tpl tpl-white-hn small-item" style-name="tpl-white-hn">
+    <!--左侧导航-->
+    <div th:replace="tools/leftMenu :: leftMenu"></div>
+    <!--右侧内容-->
+    <div class="tpl-right-item">
+        <div class="tpl-body">
+            <!--头部-->
+            <div th:replace="tools/topMenu :: topMenu"></div>
+            <!--内容-->
+            <div class="tpl-content">
+                <div class="tpl-pannel clearfix">
+                    <table id="userDetail" lay-filter="userDetail"></table>
+                    <!--开启表头控制-->
+                    <script type="text/html" id="toolbarUser">
+                        <div class="layui-btn-container">
+                            <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="addUser">新增员工信息
+                            </button>
+                            <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="getCheckLength">获取选中数目
+                            </button>
+                            <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="isAll">验证是否全选</button>
+                        </div>
+                    </script>
+                    <!--开启冻结-->
+                    <script type="text/html" id="switchUser">
+                        <input type="checkbox" name="status" value="{{d.status}}" id="{{d.id}}" lay-skin="switch"
+                               lay-text="冻结|正常" lay-filter="userStatus" {{ d.status==='FREEZE' ? 'checked' : '' }}>
+                    </script>
+                    <!--开启编辑-->
+                    <script type="text/html" id="barDemo">
+                        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                    </script>
+
+                </div>
+                <!--配色方案-->
+                <div th:replace="tools/colorMenu :: colorMenu"></div>
+                <!--用户信息-->
+                <div th:replace="tools/userMenu :: userMenu"></div>
+                <!--尾部-->
+                <div th:replace="tools/footer :: footerMenu"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" th:inline="none">
+        layui.use(['element', 'table', 'layer'], function () {
+            var $ = layui.jquery, form = layui.form, table = layui.table, layer = layui.layer;
+
+            /* 展示用户数据表*/
+            table.render({
+                elem: '#userDetail'
+                , url: '/manage/user/userList'
+                , toolbar: '#toolbarUser'
+                , title: '用户信息表'
+                , cellMinWidth: 120
+                , cols: [[
+                    {checkbox: true, fixed: true},
+                    {field: 'id', title: '用户ID'},
+                    {field: 'userNo', title: '用户编号', sort: true},
+                    {field: 'userName', title: '用户姓名'},
+                    {field: 'email', title: '用户邮箱'},
+                    {field: 'phone', title: '用户手机号'},
+                    {field: 'createTime', title: '用户创建日期'},
+                    {field: 'updateTime', title: '用户修改日期'},
+                    {
+                        field: 'status',
+                        title: '是否冻结',
+                        templet: '#switchUser',
+                        unresize: true
+                    },
+                    {fixed: 'right', title: '操作', toolbar: '#barDemo'}
+                ]]
+                , page: true
+                , done: function () {
+                    $("[data-field='id']").css('display', 'none');
+                }
+            });
+            /* 监听冻结操作*/
+            form.on('switch(userStatus)', function () {
+                var status = this.value;
+                if (this.value === 'FREEZE') {
+                    status = 'AVAILABLE';
+                } else {
+                    status = 'FREEZE';
+                }
+                var data = {"id": this.id, "status": status};
+                $.ajax({
+                    async: true,
+                    type: 'post',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    url: "/manage/common/user/addUser",
+                    success: function (result) {
+                        layer.alert("修改结果：" + result)
+                    },
+                    error: function (result) {
+                        layer.alert("请求修改异常：" + result)
+                    }
+                });
+                /*执行方法重载*/
+                table.reload('userDetail', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: {}
+                })
+                return false; // 不用跳转页面
+            })
+
+            /* 监听头部工具栏事件*/
+            table.on('toolbar(userDetail)', function (obj) {
+                const checkStatus = table.checkStatus(obj.config.id);
+                switch (obj.event) {
+                    case 'addUser': /* 弹框添加用户*/
+                        layer.open({
+                            type: 2
+                            , title: "成员新增"
+                            , closeBtn: 1
+                            , area: ['480px', '560px']
+                            , shade: 0
+                            , id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                            , btnAlign: 'c'
+                            , anim: 5
+                            , moveType: 0 //拖拽模式，0或者1
+                            , content: ['/manage/common/user/user_add', 'no']
+                        });
+                        break;
+                    case 'getCheckLength':
+                        var data = checkStatus.data;
+                        alert(data);
+                        layer.msg('选中了：' + data.length + ' 个');
+                        break;
+                    case 'isAll':
+                        layer.msg(checkStatus.isAll ? '全选' : '未全选');
+                        break;
+                }
+                ;
+            });
+            /* 触发弹框事件*/
+            var active = {
+                addOperation: function () { /* 添加员工信息*/
+
+                },
+            }
+            /* 触发点击事件*/
+            $('.layui-btn-container .layui-btn .layui-btn-sm').on('click', function () {
+                var othis = $(this), method = othis.data('method');
+                active[method] ? active[method].call(this, othis) : '';
+            });
+        })
+    </script>
+</div>
+</body>
+</html>

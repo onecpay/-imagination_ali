@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="tools/head :: headMenu" th:with="title='小样主页面'"></head>
+<body>
+<div class="tm-tpl tpl-white-hn small-item" style-name="tpl-white-hn">
+    <!--左侧导航-->
+    <div th:replace="tools/leftMenu :: leftMenu"></div>
+    <!--右侧内容-->
+    <div class="tpl-right-item">
+        <div class="tpl-body">
+            <!--头部-->
+            <div th:replace="tools/topMenu :: topMenu"></div>
+            <!--内容-->
+            <div class="tpl-content">
+                <div class="tpl-pannel">
+                    <div class="tpl-h-title">
+                        <a href="auth_add.html" class="layui-btn layui-btn-sm layui-btn-normal">添加权限</a>
+                    </div>
+                    <table class="layui-table" lay-even="" lay-skin="row">
+                        <colgroup>
+                            <col width="33%">
+                            <col width="33%">
+                            <col width="120">
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>权限名称</th>
+                            <th>权限路径</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>首页</td>
+                            <td>index/index</td>
+                            <td>启用</td>
+                            <td class="item-a" data-id="1"><a href="auth_update.html?key=1">修改</a><a href="javascript:;"
+                                                                                                     class="auth_delete">删除</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>控制台</td>
+                            <td>control/index</td>
+                            <td>启用</td>
+                            <td class="item-a" data-id="2"><a href="auth_update.html?key=2">修改</a><a href="javascript:;"
+                                                                                                     class="auth_delete">删除</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>权限控制台</td>
+                            <td>auth/index</td>
+                            <td>启用</td>
+                            <td class="item-a" data-id="3"><a href="auth_update.html?key=3">修改</a><a href="javascript:;"
+                                                                                                     class="auth_delete">删除</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><i class="layui-icon">&#xe623;</i>权限管理</td>
+                            <td>auth/index</td>
+                            <td>启用</td>
+                            <td class="item-a" data-id="5"><a href="auth_update.html?key=5">修改</a><a href="javascript:;"
+                                                                                                     class="auth_delete">删除</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><i class="layui-icon">&#xe623;</i>角色组管理</td>
+                            <td>auth/users</td>
+                            <td>启用</td>
+                            <td class="item-a" data-id="6"><a href="auth_update.html?key=6">修改</a><a href="javascript:;"
+                                                                                                     class="auth_delete">删除</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><i class="layui-icon">&#xe623;</i><i class="layui-icon">&#xe623;</i>修改权限</td>
+                            <td>auth/rule_update</td>
+                            <td>启用</td>
+                            <td class="item-a" data-id="11"><a href="auth_update.html?key=11">修改</a><a
+                                    href="javascript:;" class="auth_delete">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td><i class="layui-icon">&#xe623;</i><i class="layui-icon">&#xe623;</i>添加权限组</td>
+                            <td>auth/rule_add</td>
+                            <td>启用</td>
+                            <td class="item-a" data-id="48"><a href="auth_update.html?key=48">修改</a><a
+                                    href="javascript:;" class="auth_delete">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td><i class="layui-icon">&#xe623;</i>管理员们</td>
+                            <td>auth/user</td>
+                            <td>启用</td>
+                            <td class="item-a" data-id="13"><a href="auth_update.html?key=13">修改</a><a
+                                    href="javascript:;" class="auth_delete">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>测试中心</td>
+                            <td>test/index</td>
+                            <td>启用</td>
+                            <td class="item-a" data-id="43"><a href="auth_update.html?key=43">修改</a><a
+                                    href="javascript:;" class="auth_delete">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td><i class="layui-icon">&#xe623;</i>视图1</td>
+                            <td>index/view</td>
+                            <td>启用</td>
+                            <td class="item-a" data-id="44"><a href="auth_update.html?key=44">修改</a><a
+                                    href="javascript:;" class="auth_delete">删除</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--配色方案-->
+            <div th:replace="tools/colorMenu :: colorMenu"></div>
+            <!--用户信息-->
+            <div th:replace="tools/userMenu :: userMenu"></div>
+            <!--尾部-->
+            <div th:replace="tools/footer :: footerMenu"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="tools/head :: headMenu" th:with="title='信息补充'"></head>
+<link rel="stylesheet" th:href="@{/static/css/admin/admin.css}">
+<script type="text/javascript" th:inline="javascript" th:src="@{/static/js/admin/admin.js}">
+    /*<![CDATA[*/
+    /*]]>*/
+</script>
+<body>
+<div>
+    <form action="#" th:action="@{/customer/extra}" th:method="post" th:id="customerInfo">
+        <div class="weui-cells">
+
+            <div class="weui-cell weui-cell_select weui-cell_select-before">
+                <div class="weui-cell__hd">
+                    <select class="weui-select" name="select2">
+                        <option value="1">开户名</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" name="personName" id="personName"
+                           placeholder="开户名"/>
+                </div>
+            </div>
+
+            <div class="weui-cell weui-cell_select weui-cell_select-before">
+                <div class="weui-cell__hd">
+                    <select class="weui-select" name="select2">
+                        <option value="1">身份证</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd">
+                    <!--master-->
+                    <input class="weui-input" type="number" name="personId" id="personId"
+                           placeholder="银行预留身份证"/>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_select weui-cell_select-before">
+                <div class="weui-cell__hd">
+                    <select class="weui-select" name="select2">
+                        <option value="1">卡号</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd">
+                    <!--master-->
+                    <input class="weui-input" type="number" name="cardNo" id="cardNo"
+                           placeholder="借记卡银行卡号"/>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_select weui-cell_select-before">
+                <div class="weui-cell__hd">
+                    <select class="weui-select" name="select2">
+                        <option value="1">手机号</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd">
+                    <!--master-->
+                    <input class="weui-input" type="number" name="phone" id="phone"
+                           placeholder="银行预留手机号"/>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_select weui-cell_select-before">
+                <div class="weui-cell__hd">
+                    <select class="weui-select" name="select2">
+                        <option value="1">开户行</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" name="bankName" id="bankName" onblur="passwordStrong()"
+                           placeholder="开户行"/>
+                </div>
+            </div>
+            <!-- 文件上传-->
+            <div class="weui-gallery" id="gallery">
+                <span class="weui-gallery__img" id="galleryImg"></span>
+                <div class="weui-gallery__opr">
+                    <a href="javascript:" class="weui-gallery__del">
+                        <i class="weui-icon-delete weui-icon_gallery-delete"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="weui-cell" id="uploader">
+                <div class="weui-cell__bd">
+                    <div class="weui-uploader">
+                        <div class="weui-uploader__hd">
+                            <span class='f-red'>*</span>
+                            <p class="weui-uploader__title">个人图片上传</p>
+                            <div class="weui-uploader__info"><span id="uploadCount">0</span>/9</div>
+                        </div>
+                        <div class="weui-uploader__bd">
+                            <ul class="weui-uploader__files" id="uploaderFiles"></ul>
+                            <div class="weui-uploader__input-box">
+                                <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*"
+                                       capture="camera" multiple name="file"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--文件上柴结束-->
+        </div>
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary" onclick="customerInfo()" id="customerInfo">确&nbsp;&nbsp;&nbsp;定</a>
+            <!--<input type="submit" class="weui-btn weui-btn_primary" value="确&nbsp;&nbsp;&nbsp;定" onclick="customerInfo()"-->
+                   <!--id="customerInfo"/>-->
+        </div>
+    </form>
+</div>
+<div th:replace="tools/footer :: footerMenu"></div>
+</body>
+<script>
+    var uploadCount = 0;
+    var uploadCustomFileList = [];
+    var countA = [];
+    var uploadCountDom = document.getElementById("uploadCount");
+    weui.uploader('#uploader', {
+        url: "/wechat/uploadFile/customerInfo",
+        auto: true,
+        type: 'file',
+        fileVal: 'customerInfo',
+        compress: {
+            width: 1600,
+            height: 1600,
+            quality: .8
+        },
+        onBeforeQueued: function (files) {
+
+            if (["image/jpg", "image/jpeg", "image/png", "image/gif"].indexOf(this.type) < 0) {
+                weui.alert('请上传图片');
+                return false; // 阻止文件添加
+            }
+            if (this.size > 10 * 1024 * 1024) {
+                weui.alert('请上传不超过10M的图片');
+                return false;
+            }
+            if (files.length > 9) { // 防止一下子选择过多文件
+                weui.alert('最多只能上传9张图片，请重新选择');
+                return false;
+            }
+            ++uploadCount;
+            uploadCountDom.innerHTML = uploadCount;
+        },
+        onQueued: function () {
+            console.log(this);
+            uploadCustomFileList.push(this);
+        },
+        onBeforeSend: function (data, headers) {
+            console.log(this, data, headers);
+        },
+        onProgress: function (procent) {
+            console.log(this, procent);
+        },
+        onSuccess: function (ret) {
+
+            console.log(this, ret);
+            countA.push(ret.data)
+        },
+        onError: function (err) {
+            console.log(this, err);
+        }
+    });
+
+    var $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
+        $uploaderFiles = $("#uploaderFiles"), $countA = $("#countA");
+    var index; //第几张图片
+
+    //点开图片
+    $uploaderFiles.on("click", "li", function () {
+        index = $(this).index();
+        $galleryImg.attr("style", this.getAttribute("style"));
+        $gallery.fadeIn(100);
+    });
+    //关闭图片
+    $gallery.on("click", function () {
+        $gallery.fadeOut(100);
+    });
+    //删除图片
+    $(".weui-gallery__del").click(function (e) {
+        var target = e.target;
+        var id = target.getAttribute('data-id');
+        for (var i = 0, len = uploadCustomFileList.length; i < len; ++i) {
+            var file = uploadCustomFileList[i];
+            if (file.id == id) {
+                index = i;
+                break;
+            }
+        }
+        if (index) uploadCustomFileList.splice(index, 1);
+        $uploaderFiles.find("li").eq(index).remove();
+        uploadCount = uploadCount - 1;
+        uploadCountDom.innerHTML = uploadCount;
+
+        // 上传成功删除的照片不在关联
+        if (index) countA.splice(index, 1);
+        $countA.find("li").eq(index).remove();
+    });
+
+    // 提交参数信息
+    function customerInfo() {
+        let formData = {};
+        let fields = $('#customerInfo').serializeArray();
+        $.each(fields, function (index, field) {
+            formData[field.name] = field.value;
+        });
+        formData["customerUrl"] = JSON.stringify(countA);
+
+        $.ajax({
+            url: '/wechat/customer/extra',
+            method: 'post',
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            dataType: 'JSON',
+            async: false,
+            success: function (result) {
+                if (10000 === result.subCode) {
+                    $.toast(result.data);
+                    window.location.href = "/wechat/common/personal/customer";
+                } else {
+                    $.toast(result.data, 3000);
+                }
+            },
+            error: function (data) {
+            }
+        })
+
+    }
+</script>
+</html>

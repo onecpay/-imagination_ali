@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="tools/head :: headMenu" th:with="title='小样主页面'"></head>
+<body>
+<div class="tm-tpl tpl-white-hn small-item" style-name="tpl-white-hn">
+    <!--左侧导航-->
+    <div th:replace="tools/leftMenu :: leftMenu"></div>
+    <!--右侧内容-->
+    <div class="tpl-right-item">
+        <div class="tpl-body">
+            <!--头部-->
+            <div th:replace="tools/topMenu :: topMenu"></div>
+            <!--内容-->
+            <div class="tpl-content">
+                <div class="tpl-pannel clearfix">
+                    <div class="tpl-h-title">
+                        <a href="javascript:;" class="layui-btn layui-btn-sm back"><i class="fa fa-arrow-left"></i>
+                            返回上一页</a>
+                    </div>
+                    <form class="layui-form layui-col-md7" action="" method="post">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户名</label>
+                            <div class="layui-input-block">
+                                <input type="text" lay-verify="title" autocomplete="off" value="" required
+                                       placeholder="imooc" class="layui-input layui-disabled" disabled>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">密码</label>
+                            <div class="layui-input-block" style="position: relative;">
+                                <input type="password" name="password" lay-verify="required" placeholder="请输入密码"
+                                       autocomplete="off" class="layui-input layui-disabled" disabled>
+                                <a href="javascript:;" class="update-password"
+                                   style="position: absolute;right:5px;top:10px;">修改密码？</a>
+                                <a href="javascript:;" class="dit-update-password"
+                                   style="position: absolute;right:5px;top:10px;display: none;">不改了...</a>
+                            </div>
+                        </div>
+                        <div class="layui-form-item pwd1" style="display: none;">
+                            <label class="layui-form-label">重复密码</label>
+                            <div class="layui-input-block" style="position: relative;">
+                                <input type="password" name="password1" disabled lay-verify="required"
+                                       placeholder="再输入一次密码" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">权限组</label>
+                            <div class="layui-input-block">
+                                <select name="rule" lay-filter="rule">
+                                    <option value="2" selected>管理员</option>
+                                    <option value="3">游客</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" lay-skin="switch" lay-filter="status" lay-text="启用|禁用" checked>
+                                <input type="hidden" name="status" value="启用">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <button class="layui-btn layui-btn-sm">提交</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--配色方案-->
+            <div th:replace="tools/colorMenu :: colorMenu"></div>
+            <!--用户信息-->
+            <div th:replace="tools/userMenu :: userMenu"></div>
+            <!--尾部-->
+            <div th:replace="tools/footer :: footerMenu"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    layui.use(["layer", "form", "jquery"], function () {
+        var form = layui.form;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        form.on('switch(status)', function (data) {
+            $("input[name='status']").val(this.checked ? "启用" : "禁用");
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body class="layui-bg-green">
+<header th:fragment="topMenu">
+    <div class="tpl-header">
+        <div class="tpl-header-fluid">
+            <div class="tpl-button switch-list">
+                <i class="fa fa-hand-o-left"></i>
+            </div>
+            <div class="tpl-button refresh" title="刷新">
+                <i class="fa fa-refresh"></i>
+            </div>
+            <div class="tpl-button text">
+                <a th:href="@{/common/index/index}"><i class="fa fa-home"></i> 首页</a>
+            </div>
+            <div class="tpl-userbar">
+                <ul>
+                    <li><a href="javascript:;" class="dashboard" tag="style-bar"><i class="fa fa-dashboard"></i></a>
+                    </li>
+                    <li><a href="">欢迎你，
+                        <th:block th:text="${session.name}"></th:block>
+                    </a></li>
+                    <li><a th:href="@{/manage/logout}" class="logout"><i class="fa fa-power-off"></i>退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+</body>
+</html>

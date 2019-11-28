@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="tools/head :: headMenu" th:with="title='信息补充'"></head>
+<link rel="stylesheet" th:href="@{/static/css/admin/admin.css}">
+<script type="text/javascript" th:inline="javascript" th:src="@{/static/js/admin/admin.js}">
+    /*<![CDATA[*/
+    /*]]>*/
+</script>
+<body>
+<div>
+    <div class="weui-cells">
+        <a class="weui-cell weui-cell_access" th:href="@{/customer/customerInfo}">
+            <div class="weui-cell__bd">
+                <p>我的信息</p>
+            </div>
+        </a>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+                <p>带连接的列表</p>
+            </div>
+            <div class="weui-cell__ft">
+            </div>
+        </a>
+    </div>
+</div>
+<div th:replace="tools/footer :: footerMenu"></div>
+</body>
+<script>
+
+</script>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="tools/head :: headMenu" th:with="title='小样主页面'"></head>
+<body>
+<body>
+<div class="tm-tpl tpl-white-hn small-item" style-name="tpl-white-hn">
+    <!--左侧导航-->
+    <div th:replace="tools/leftMenu :: leftMenu"></div>
+    <!--右侧内容-->
+    <div class="tpl-right-item">
+        <div class="tpl-body">
+            <!--头部-->
+            <div th:replace="tools/topMenu :: topMenu"></div>
+            <!--内容-->
+            <div class="tpl-content">
+                <div class="tpl-pannel clearfix">
+                    <div class="tpl-h-title">
+                        <a href="javascript:;" class="layui-btn layui-btn-sm back">返回上一页</a>
+                    </div>
+                    <form id="auth-form" class="layui-form layui-col-md8" method="post" action="">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">权限组名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="authtitle" lay-verify="title" autocomplete="off"
+                                       placeholder="请输入权限组名称，如‘管理员’" class="layui-input" required>
+                            </div>
+                        </div>
+                        <div class="layui-form-item" pane="">
+                            <label class="layui-form-label">所属权限</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="authname[]" lay-skin="primary" title="首页" value="1">
+                            </div>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="authname[]" lay-skin="primary" title="控制台" value="2">
+                            </div>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="authname[]" lay-skin="primary" title="权限控制台" value="3">
+                            </div>
+                            <div class="layui-input-block padleft1">
+                                <input type="checkbox" name="authname[]" lay-skin="primary" title="权限管理" value="5">
+                            </div>
+                            <div class="layui-input-block padleft1">
+                                <input type="checkbox" name="authname[]" lay-skin="primary" title="角色组管理" value="6">
+                            </div>
+                            <div class="layui-input-block padleft2">
+                                <input type="checkbox" name="authname[]" lay-skin="primary" title="修改权限" value="11">
+                            </div>
+                            <div class="layui-input-block padleft2">
+                                <input type="checkbox" name="authname[]" lay-skin="primary" title="添加权限组" value="48">
+                            </div>
+                            <div class="layui-input-block padleft1">
+                                <input type="checkbox" name="authname[]" lay-skin="primary" title="管理员们" value="13">
+                            </div>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="authname[]" lay-skin="primary" title="测试中心" value="43">
+                            </div>
+                            <div class="layui-input-block padleft1">
+                                <input type="checkbox" name="authname[]" lay-skin="primary" title="视图1" value="44">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">组状态</label>
+                            <input type="checkbox" name="switch" lay-skin="switch" lay-filter="status" lay-text="启用|禁用"
+                                   checked>
+                            <input type="hidden" name="status" value="启用">
+                        </div>
+                        <div class="layui-form-item" pane="">
+                            <button class="send layui-btn layui-btn-sm">添加该组</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--配色方案-->
+            <div class="right-bar style-bar"></div>
+            <!--用户信息-->
+            <div class="right-bar user-bar"></div>
+            <!--尾部-->
+            <div class="tpl-footer"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    layui.use(["layer", "form", "jquery"], function () {
+        var form = layui.form;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        form.on('switch(status)', function (data) {
+            $("input[name='status']").val(this.checked ? "启用" : "禁用");
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="tools/head :: headMenu" th:with="title='小样主页面'"></head>
+<body>
+<div class="tm-tpl tpl-white-hn small-item" style-name="tpl-white-hn">
+    <!--左侧导航-->
+    <div th:replace="tools/leftMenu :: leftMenu"></div>
+    <!--右侧内容-->
+    <div class="tpl-right-item">
+        <div class="tpl-body">
+            <!--头部-->
+            <div th:replace="tools/topMenu :: topMenu"></div>
+            <!--内容-->
+            <div class="tpl-content">
+                <div class="tpl-pannel clearfix">
+                    <div class="tpl-h-title">
+                        <a href="javascript:;" class="layui-btn layui-btn-sm back">返回上一页</a>
+                    </div>
+                    <form class="layui-form layui-col-md7" method="post" action="">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">权限名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="auth_name" required autocomplete="off" placeholder="请输入权限名称"
+                                       class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">图标</label>
+                            <div class="layui-input-block" style="position: relative;">
+                                <input type="tel" name="icon" required autocomplete="off" class="layui-input"
+                                       placeholder="fontawesome图标如：fa-home 不需多加前缀fa">
+                                <a href="javascript:;" style="position: absolute;right: -20px;top:10px"><i class=""
+                                                                                                           id="preview"></i></a>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">权限父级</label>
+                            <div class="layui-input-block">
+                                <select name="auth_pid">
+                                    <option value="0">无父级</option>
+                                    <option value="1">首页</option>
+                                    <option value="2">控制台</option>
+                                    <option value="3">权限控制台</option>
+                                    <option value="5">- 权限管理</option>
+                                    <option value="6">- 角色组管理</option>
+                                    <option value="11">- - 修改权限</option>
+                                    <option value="48">- - 添加权限组</option>
+                                    <option value="13">- 管理员们</option>
+                                    <option value="43">测试中心</option>
+                                    <option value="44">- 视图1</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">权限控制器</label>
+                            <div class="layui-input-block">
+
+                                <div class="layui-input-inline">
+                                    <input type="tel" name="auth_c" required autocomplete="off" class="layui-input"
+                                           placeholder="控制器名">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">权限方法</label>
+                            <div class="layui-input-block">
+                                <div class="layui-input-inline">
+                                    <input type="tel" name="auth_f" required autocomplete="off" class="layui-input"
+                                           placeholder="方法名">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" lay-skin="switch" lay-filter="status" lay-text="启用|禁用" checked>
+                                <input type="hidden" name="status" value="启用">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <button class="layui-btn">提交</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--配色方案-->
+            <div th:replace="tools/colorMenu :: colorMenu"></div>
+            <!--用户信息-->
+            <div th:replace="tools/userMenu :: userMenu"></div>
+            <!--尾部-->
+            <div th:replace="tools/footer :: footerMenu"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="static/js/jquery.cookie.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("input[name='icon']").keyup(function () {
+            $("#preview").removeClass();
+            $("#preview").addClass("fa fa-" + $(this).val());
+        });
+    })
+</script>
+<script type="text/javascript">
+    layui.use(["layer", "form", "jquery"], function () {
+        var form = layui.form;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        form.on('switch(status)', function (data) {
+            $("input[name='status']").val(this.checked ? "启用" : "禁用");
+        });
+    })
+</script>
+</body>
+</html>

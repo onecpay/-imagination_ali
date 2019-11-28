@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="tools/head :: headMenu" th:with="title='小样主页面'"></head>
+<body>
+<div class="tm-tpl tpl-white-hn small-item" style-name="tpl-white-hn">
+    <!--左侧导航-->
+    <div th:replace="tools/leftMenu :: leftMenu"></div>
+    <!--右侧内容-->
+    <div class="tpl-right-item">
+        <div class="tpl-body">
+            <!--头部-->
+            <div th:replace="tools/topMenu :: topMenu"></div>
+            <!--内容-->
+            <div class="tpl-content">
+                <div class="tpl-pannel">
+                    <div class="tpl-h-title">
+                        <a href="role_add.html" class="layui-btn layui-btn-sm layui-btn-normal">添加权限组</a>
+                    </div>
+
+                    <table class="layui-table" lay-even="" lay-skin="row">
+                        <colgroup>
+                            <col width="240">
+                            <col width="33%">
+                            <col width="120">
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>权限组名称</th>
+                            <th>可执行控制器-方法</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>管理员</td>
+                            <td>
+                                index-index,control-index,auth-index,auth-index,auth-users,auth-user,test-index,index-view
+                            </td>
+                            <td>启用</td>
+                            <td class="item-a" data-id="2"><a href="role_update.html?key=2">修改权限</a><a
+                                    href="javascript:;" class="delrule">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>游客</td>
+                            <td>index-index,control-index,auth-index,test-index,index-view</td>
+                            <td>启用</td>
+                            <td class="item-a" data-id="3"><a href="role_update.html?key=3">修改权限</a><a
+                                    href="javascript:;" class="delrule">删除</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--配色方案-->
+            <div th:replace="tools/colorMenu :: colorMenu"></div>
+            <!--用户信息-->
+            <div th:replace="tools/userMenu :: userMenu"></div>
+            <!--尾部-->
+            <div th:replace="tools/footer :: footerMenu"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

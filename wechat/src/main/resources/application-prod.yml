@@ -1,0 +1,90 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.17.0.5:9500/eureka/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: :${eureka.instance.ip-address}:${spring.application.name}:${eureka.instance.non-secure-port}
+    ip-address: 172.17.0.6
+    non-secure-port: 9513
+spring:
+  datasource:
+    master:
+      jdbcUrl: jdbc:mysql://172.17.0.2:3306/wechatdb?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+      username: root
+      password: ONEC2112e
+      type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: com.mysql.cj.jdbc.Driver
+      useSSL: false
+      maximun-pool-size: 100
+      max-idle: 10
+      max-wait: 10000
+      min-idle: 5
+      initial-size: 5
+      validation-query: SELECT 1
+      test-on-borrow: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 18800
+    middle:
+      jdbcUrl: jdbc:mysql://172.17.0.2:3306/wechatdb?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+      username: root
+      password: ONEC2112e
+      type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: com.mysql.cj.jdbc.Driver
+      useSSL: false
+      maximun-pool-size: 100
+      max-idle: 10
+      max-wait: 10000
+      min-idle: 5
+      initial-size: 5
+      validation-query: SELECT 1
+      test-on-borrow: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 18800
+  redis:
+    password: onec2112
+#    cluster:
+#      nodes: 172.17.0.4:6379
+#      max-redirects:
+    jedis:
+      pool:
+        max-active: 500
+        max-idle: 8
+        max-wait: 12s
+    timeout: 12s
+    host: 172.17.0.4
+    port: 6379
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    mode: LEGACYHTML5
+    suffix: .html
+  data:
+    mongodb:
+      uri: mongodb://172.17.0.8:27017/wechatdb
+ribbon:
+  ReadTimeout: 70000
+  ConnectTimeout: 10000
+checkExampleEntityClass: true
+enableMethodAnnotation: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 100000
+wx:
+  mp:
+    configs:
+      - appId: wxa185e9d676f2c769
+        secret: b9180fa573c88d2a5d1ed4c18dbf6892
+        token: kX1Dcc8LjmNtXUXgNU7LyjfMVjq
+        aesKey: kX1Dcc8LjmNtXUXgNU7LyjfMVjqLsL64bQmOxhPt8IR
+      - appId:
+        secret:
+        token:
+        aesKey:
+feign:
+  httpclient:
+    connection-timeout: 2000

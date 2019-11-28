@@ -1,0 +1,98 @@
+#logging:
+#  config: classpath:log4j2_manage.yml
+#  level:
+#    root: INFO
+#    #org.springframework.cloud.sleuth: DEBUG
+#    com.example.product.client: DEBUG
+#    io.undertow: INFO
+#server:
+#  port: 9514
+#  undertow:
+#    io-threads: 4
+#    worker-threads: 32
+#    buffer-size: 1024
+#    direct-buffers: true
+#  servlet:
+#    context-path: /product
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://127.0.0.1:9500/eureka/eureka/
+#    register-with-eureka: true
+#  instance:
+#    prefer-ip-address: true
+#    instance-id: ${eureka.instance.ip-address}:${eureka.instance.non-secure-port}
+#    ip-address: 127.0.0.1
+#    non-secure-port: 9514
+#spring:
+#  application:
+#    name: product
+#  profiles:
+#    active: ${profile.active}
+#  datasource:
+#    master:
+#      jdbcUrl: jdbc:mysql://localhost:3306/productdb?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+#      username: ONEC
+#      password: 2112
+#      type: com.alibaba.druid.pool.DruidDataSource
+#      driverClassName: com.mysql.cj.jdbc.Driver
+#      useSSL: false
+#      maximun-pool-size: 100
+#      max-idle: 10
+#      max-wait: 10000
+#      min-idle: 5
+#      initial-size: 5
+#      validation-query: SELECT 1
+#      test-on-borrow: false
+#      test-while-idle: true
+#      time-between-eviction-runs-millis: 18800
+#    middle:
+#      jdbcUrl: jdbc:mysql://localhost:3306/productdb?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+#      username: ONEC
+#      password: 2112
+#      type: com.alibaba.druid.pool.DruidDataSource
+#      driverClassName: com.mysql.cj.jdbc.Driver
+#      useSSL: false
+#      maximun-pool-size: 100
+#      max-idle: 10
+#      max-wait: 10000
+#      min-idle: 5
+#      initial-size: 5
+#      validation-query: SELECT 1
+#      test-on-borrow: false
+#      test-while-idle: true
+#      time-between-eviction-runs-millis: 18800
+#  redis:
+#    password: 862112
+##    cluster:
+##      nodes: 127.0.0.1:6379
+##      max-redirects:
+#    jedis:
+#      pool:
+#        max-active: 500
+#        max-idle: 8
+#        max-wait: 12
+#    timeout: 5000
+#    host: 127.0.0.1
+#    port: 6379
+#  devtools:
+#    restart:
+#      enabled: true
+#      additional-paths: src/main/java/com
+#  mail:
+#    host: smtp.qq.com
+#    username: 2650020302@qq.com
+#    password: ijfebctnfnabebac # QQ 邮箱授权码
+#    default-encoding: UTF-8
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
+#  # 设置默认密码：
+#  security:
+#    user:
+#      name: user
+#      password: 22222

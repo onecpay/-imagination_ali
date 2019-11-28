@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="tools/head ::headMenu(title='请求错误')"></head>
+<body class="weui-article">
+<div class="weui-msg">
+    <div class="weui-msg__icon-area"><i class="weui-icon-info weui-icon_msg"></i></div>
+    <div class="weui-msg__text-area">
+        <h2 class="weui-msg__title">操作失败</h2>
+        <p class="weui-msg__desc">内容详情，可根据实际需要安排，如果换行则不超过规定长度，居中展现<a href="javascript:void(0);">文字链接</a></p>
+        <span th:text="${#request.getAttribute('respMsg')}"></span>
+    </div>
+
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a th:href="@{/common/center/index}" class="weui-btn weui-btn_primary">返回主页面</a>
+            <a th:href="@{/manage/logout}" class="weui-btn weui-btn_default">退出</a>
+        </p>
+    </div>
+    <!--此处引入底部渲染内容  -->
+    <div th:replace="tools/footer::footerMenu"></div>
+</div>
+</body>
+
+</html>

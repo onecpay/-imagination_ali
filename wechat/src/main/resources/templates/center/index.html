@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="tools/head::headMenu(title='小样视界')"></head>
+<link rel="stylesheet" th:href="@{/static/css/admin/admin.css}">
+<body>
+<div class="index_body">
+    <div class="weui-tab">
+        <!--占据出了tabbar 之外的所有高度-->
+        <div class="weui-tab__bd">
+            <!--flex-->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" th:each="banner :${bannerList}">
+                        <a th:href="@{''+${banner.bannerUrl}}"><img alt="轮播图"
+                                                                    th:src="@{'/uploadFile/imageInfo/'+${banner.imageUrl}}"
+                                                                    class="logo"/></a>
+                    </div>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+                <!-- 如果需要导航按钮 -->
+                <!--<div class="swiper-button-prev"></div>-->
+                <!--<div class="swiper-button-next"></div>-->
+                <!-- 如果需要滚动条 -->
+                <!--<div class="swiper-scrollbar"></div>-->
+            </div>
+            <!-- 切换页面展示部分-->
+            <div class="index_weui-tab__panel">
+                <!-- 首页展示-->
+                <div id="index_text" class="weui-grids">
+                    <a th:href="@{'/product/productList?type='+'P000A'}" class="weui-grid js_grid">
+                        <div class="weui-grid__icon">
+                            <img th:src="@{/static/image/icon/index_grid_center_1.jpg}" alt="">
+                        </div>
+                        <p class="weui-grid__label">
+                            信用卡推荐
+                        </p>
+                    </a>
+                    <a th:href="@{'/product/productList?type='+'P000B'}" class="weui-grid js_grid">
+                        <div class="weui-grid__icon">
+                            <img th:src="@{/static/image/icon/index_grid_center_2.jpg}" alt="">
+                        </div>
+                        <p class="weui-grid__label">
+                            贷款产品推荐
+                        </p>
+                    </a>
+                    <a th:href="@{'/product/productList?type='+'P000B'}" class="weui-grid js_grid">
+                        <div class="weui-grid__icon">
+                            <img th:src="@{/static/image/icon/index_grid_center_3.jpg}" alt="">
+                        </div>
+                        <p class="weui-grid__label">
+                            快速收款
+                        </p>
+                    </a>
+                </div>
+                <!--三方显示-->
+                <div id="index_" class="weui-grids index_weui__panel_display_none">
+                    <a href="https://app.jd.com/" class="weui-grid js_grid">
+                        <div class="weui-grid__icon">
+                            <img th:src="@{/static/image/icon/index_jd_1.jpg}" alt="">
+                        </div>
+                        <p class="weui-grid__label">
+                            京东
+                        </p>
+                    </a>
+
+                    <a href="https://h5.m.taobao.com/" class="weui-grid js_grid">
+                        <div class="weui-grid__icon">
+                            <img th:src="@{/static/image/icon/index_taobao_1.jpg}" alt="">
+                        </div>
+                        <p class="weui-grid__label">
+                            淘宝
+                        </p>
+                    </a>
+                </div>
+                <!--聊天中心-->
+                <div id="index_chat_center" class="weui-grids index_weui__panel_display_none">
+                    <a href="" class="weui-grid js_grid">
+                        <div class="weui-grid__icon">
+                            <img th:src="@{/static/image/icon/index_grid_center_1.jpg}" alt="">
+                        </div>
+                        <p class="weui-grid__label">
+                            爱购物
+                        </p>
+                    </a>
+
+                    <a href="" class="weui-grid js_grid">
+                        <div class="weui-grid__icon">
+                            <img th:src="@{/static/image/icon/index_grid_center_2.jpg}" alt="">
+                        </div>
+                        <p class="weui-grid__label">
+                            爱洗澡
+                        </p>
+                    </a>
+                </div>
+                <!--个人中心-->
+                <div id="index_personal_center" class="weui-grids index_weui__panel_display_none">
+                    <a th:href="@{/permission/personal/customer}" class="weui-grid js_grid">
+                        <div class="weui-grid__icon">
+                            <img th:src="@{/static/image/icon/index_grid_center_1.jpg}" alt="">
+                        </div>
+                        <p class="weui-grid__label">
+                            我的信息
+                        </p>
+                    </a>
+
+                    <a href="" class="weui-grid js_grid">
+                        <div class="weui-grid__icon">
+                            <img th:src="@{/static/image/icon/index_grid_center_2.jpg}" alt="">
+                        </div>
+                        <p class="weui-grid__label">
+                            我的设置
+                        </p>
+                    </a>
+                    <a th:href="@{/common/video/video}" class="weui-grid js_grid">
+                        <div class="weui-grid__icon">
+                            <img th:src="@{/static/image/icon/index_grid_center_2.jpg}" alt="">
+                        </div>
+                        <p class="weui-grid__label">
+                            我的视频
+                        </p>
+                    </a>
+                    <a th:href="@{/permission/personal/extra}" class="weui-grid js_grid">
+                        <div class="weui-grid__icon">
+                            <img th:src="@{/static/image/icon/index_grid_center_2.jpg}" alt="">
+                        </div>
+                        <p class="weui-grid__label">
+                            补充资料
+                        </p>
+                    </a>
+                    <a th:href="@{/manage/logout}" class="weui-grid js_grid">
+                        <div class="weui-grid__icon">
+                            <img th:src="@{/static/image/icon/index_grid_center_2.jpg}" alt="">
+                        </div>
+                        <p class="weui-grid__label">
+                            退出登陆
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--底部边栏-->
+        <div th:replace="tools/navigation :: navigation"></div>
+    </div>
+    <div th:replace="tools/footer :: footerMenu"></div>
+</div>
+</body>
+<script th:src="@{/static/js/admin/admin.js}" type="text/javascript"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+
+        // 轮播图的方向，也可以是vertical方向
+        direction: 'horizontal',
+        //播放速度
+        loop: true,
+        // 自动播放时间
+        autoplay: true,
+        // 播放的速度
+        speed: 2000,
+        // 如果需要分页器，即下面的小圆点
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        // 这样，即使我们滑动之后， 定时器也不会被清除
+        autoplayDisableOnInteraction: false,
+    });
+
+</script>
+</html>

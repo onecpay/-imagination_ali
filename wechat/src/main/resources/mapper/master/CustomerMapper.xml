@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.wechat.dao.master.CustomerMapper">
+    <resultMap id="BaseResultMap" type="com.example.wechat.entity.security.Customer">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="version" jdbcType="INTEGER" property="version"/>
+        <result column="customer_no" jdbcType="VARCHAR" property="customerNo"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+    </resultMap>
+
+    <select id="findCustomerPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select c.*
+    from t_wechat_customer c
+    where c.phone= #{phone,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findCustomerEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select c.*
+    from t_wechat_customer c
+    where c.email= #{email,jdbcType=VARCHAR}
+    </select>
+</mapper>

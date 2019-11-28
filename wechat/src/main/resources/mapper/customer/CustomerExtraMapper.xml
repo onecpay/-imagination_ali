@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.wechat.dao.customer.CustomerExtraMapper">
+    <resultMap id="BaseResultMap" type="com.example.wechat.entity.customer.CustomerExtra">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="version" jdbcType="INTEGER" property="version"/>
+        <result column="customer_no" jdbcType="VARCHAR" property="customerNo"/>
+        <result column="person_id" jdbcType="VARCHAR" property="personId"/>
+        <result column="card_no" jdbcType="VARCHAR" property="cardNo"/>
+        <result column="bank_name" jdbcType="VARCHAR" property="bankName"/>
+        <result column="bank_code" jdbcType="VARCHAR" property="bankCode"/>
+        <result column="bank_no" jdbcType="VARCHAR" property="bankNo"/>
+        <result column="customer_url" jdbcType="VARCHAR" property="customerUrl"/>
+        <result column="card_url" jdbcType="VARCHAR" property="cardUrl"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="person_name" jdbcType="VARCHAR" property="personName"/>
+    </resultMap>
+
+    <select id="selectByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select t.*
+      from t_wechat_customer_extra t
+      where t.customer_no=#{customerNo,jdbcType=VARCHAR}
+    </select>
+
+</mapper>

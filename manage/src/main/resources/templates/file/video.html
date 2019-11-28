@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--head部分-->
+<head th:include="tools/head :: headMenu" th:with="title='管理员登录'"></head>
+<body class="layui-layout-body">
+
+<div class="layui-layout layui-layout-admin">
+    <!--此处引入顶栏  -->
+    <div th:replace="tools/topMenu :: topMenu"></div>
+    <!--此处引入边栏  -->
+    <div th:replace="tools/leftMenu :: leftMenu"></div>
+
+    <div class="layui-body">
+        <button type="button" class="layui-btn" id="uploadVideo"><i class="layui-icon"></i>上传视频</button>
+        <div class="layui-progress" lay-showPercent="true">
+            <div class="layui-progress-bar layui-bg-red" lay-percent="1%" id="demo"></div>
+        </div>
+    </div>
+    <!--此处引入底部渲染内容  -->
+    <div th:replace="tools/footer ::footerMenu"></div>
+</div>
+<script type="text/javascript">
+    layui.use(['element', 'form', 'upload'], function () {
+        let form = layui.form,
+            element = layui.element,
+            upload = layui.upload,
+            $ = layui.jquery;
+
+        upload.render({
+            elem: '#uploadVideo'
+            , url: '/manage/upload/video'
+            , accept: 'video'
+            , done: function (res) {
+                console.log(res);
+                if (res.code === 0) {
+                    alert("文件上传完成");
+                }
+            }
+            , progress: function (n) {
+                let percent = n + '%';
+                element.progress('demo', percent);
+            }
+        });
+    })
+</script>
+</body>
+</html>
+      

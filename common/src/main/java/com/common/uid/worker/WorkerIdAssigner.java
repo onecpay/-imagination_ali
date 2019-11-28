@@ -1,0 +1,27 @@
+/*
+ * Copyright (c) 2017 Baidu, Inc. All Rights Reserve.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.common.uid.worker;
+
+/** @author admin */
+public interface WorkerIdAssigner {
+
+  /**
+   * 返回一个应用节点id 如果该节点不存在则创建，否则只是修改时间
+   *
+   * @return workdId
+   */
+  long assignWorkerId();
+}

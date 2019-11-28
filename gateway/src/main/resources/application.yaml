@@ -1,0 +1,88 @@
+#server:
+#  port: 9518
+#
+##logging:
+##  config:
+#
+## 配置服务注册中心
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://127.0.0.1:9500/eureka/eureka/
+#    register-with-eureka: true
+#  instance:
+#    prefer-ip-address: true
+#    instance-id: ${eureka.instance.ip-address}:${eureka.instance.non-secure-port}
+#    ip-address: 127.0.0.1
+#    non-secure-port: 9518
+#spring:
+#  application:
+#    name: gateway
+##  cloud:
+##    gateway:
+##      routes:
+##        # ����path ·��ת��
+##        - id: path_route
+##          uri: http:127.0.0.1:9513/payment
+##          predicates:
+##            - Path=/payment/**
+##        # ����ʱ��ת���� ���ڹ̶�Īһ��ʱ��֮ǰ��ת��������ʱ����ZonedDateTime��ƥ��ʱ�䣩
+##        - id: blog
+##          uri: http://blog.yuqiyu.com
+##          predicates:
+##            - Before=2019-05-01T00:00:00+08:00[Asia/Shanghai]
+##        # ����ʱ��ת���� ���ڹ̶�Īһ��ʱ��֮��ת��������ʱ����ZonedDateTime��ƥ��ʱ�䣩��
+##        #   ��ĳ��ʱ�䷶Χ�ڣ�- Between=2019-04-29T00:00:00+08:00[Asia/Shanghai], 2019-05-01T00:00:00+08:00[Asia/Shanghai]
+##        - id: blog
+##          uri: http://blog.yuqiyu.com
+##          predicates:
+##            - After=2019-04-29T00:00:00+08:00[Asia/Shanghai]
+##        # cookie 为：hengboy 或者：yuqiyu
+##        - id: blog
+##            uri: http://blog.yuqiyu.com
+##            predicates:
+##              - Cookie=hengboy, yuqiyu
+##        # header X-Request-Id ：为数字
+##        - id: blog
+##            uri: http://blog.yuqiyu.com
+##            predicates:
+##              - Header=X-Request-Id, \d+
+##        # host **.yuqiyu.com
+##        - id: blog
+##            uri: http://blog.yuqiyu.com
+##            predicates:
+##              - Host=**.yuqiyu.com
+##        # 请求方法为post：
+##        - id: blog
+##            uri: http://blog.yuqiyu.com
+##            predicates:
+##              - Method=POST
+##              # predicates: 多条件转发
+##              -Path = 122.123.123.0
+#
+## 配置gateway 转发中心：启用注册中关心转发
+#  cloud:
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+#      routes:
+#        # 配置产品服务： 注册中心转发
+#        - id: product
+#          uri: lb://product
+#          predicates:
+#            - Path=/product/**
+#          filters:
+#            - StripPrefix=1
+#        # 收款服务注册中心转发
+#        - id: payment
+#          uri: lb://payment
+#          predicates:
+#            - Path=/payment/**
+#          filters:
+#            - AddRequestHeader=X-Request-Foo, TEST
+##      discovery:
+##        locator:
+##          enabled: true
+#
+#

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="tools/head :: headMenu" th:with="title='小样主页面'"></head>
+<body>
+<div class="tm-tpl tpl-white-hn small-item" style-name="tpl-white-hn">
+    <!--左侧导航-->
+    <div th:replace="tools/leftMenu :: leftMenu"></div>
+    <!--主题内容-->
+    <div class="tpl-right-item">
+        <div class="tpl-body">
+            <!--头部-->
+            <div th:replace="tools/topMenu :: topMenu"></div>
+            <!--内容-->
+            <div class="tpl-content">
+                <div class="content-pannel clearfix">
+
+                    <!--主题类容-->
+                    <div class="layui-col-md8 clearfix">
+                        <div class="fpl-fluid">
+                            <div class="layui-col-md6">
+                                <div class="tpl-card">
+                                    <div class="tpl-card-title">
+                                        你好，世界
+                                        <i class="fa fa-exclamation tpl-icon-tips" data-title="你好，世界"></i>
+                                    </div>
+                                    <div class="card-pannel">
+                                        你是 九月夏天滚烫的浪,你是 忽而大雨瓢泼的向往,你是 飞越山川河流的大梦一场,你是 整夜白雪茫茫的路旁,你是 南半球的年少风光,你是无言 你是对望,你是
+                                        隔着落地窗的翅膀,你是 小城艳阳高照的清香,你是 无力抗拒不停追逐的磁场,你是 傍晚落日余晖的方向,你是我不能拥抱的短暂理想,你是旅途 你是故乡,你是
+                                        不愿停下的难忘情长,你是 逃离废墟的路途茫茫,你是 忽明忽暗的不悔时光,你是 一束生命的全力绽放,你是 认真书写的一笔一划,你是 几缕发丝的错误生长,你是解药
+                                        你是营养,你是 四海为家的回头牵肠,你是 我独享的遗憾和渴望,你是不愿醒来的梦啊柔情一场,我的名字 叫难忘, 我的名字叫 难忘。
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md6">
+                                <div class="tpl-card">
+                                    <div class="tpl-card-title">你好，世界</div>
+                                    <div class="card-pannel">
+                                        你是 九月夏天滚烫的浪,你是 忽而大雨瓢泼的向往,你是 飞越山川河流的大梦一场,你是 整夜白雪茫茫的路旁,你是 南半球的年少风光,你是无言 你是对望,你是
+                                        隔着落地窗的翅膀,你是 小城艳阳高照的清香,你是 无力抗拒不停追逐的磁场,你是 傍晚落日余晖的方向,你是我不能拥抱的短暂理想,你是旅途 你是故乡,你是
+                                        不愿停下的难忘情长,你是 逃离废墟的路途茫茫,你是 忽明忽暗的不悔时光,你是 一束生命的全力绽放,你是 认真书写的一笔一划,你是 几缕发丝的错误生长,你是解药
+                                        你是营养,你是 四海为家的回头牵肠,你是 我独享的遗憾和渴望,你是不愿醒来的梦啊柔情一场,我的名字 叫难忘, 我的名字叫 难忘。
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md12">
+                                <div class="tpl-card">
+                                    <div class="card-pannel">
+                                        <div class="layui-carousel" id="carousel_1">
+                                            <div carousel-item style="text-align: center;line-height: 300px;">
+                                                <div>轮播条目1</div>
+                                                <div>轮播条目2</div>
+                                                <div>轮播条目3</div>
+                                                <div>轮播条目4</div>
+                                                <div>轮播条目5</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md12">
+                                <div class="tpl-card">
+                                    <div class="echart" id="echart1" style="width: 500px;height: 250px;margin:0 auto">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--版本信息-->
+                    <div th:replace="tools/editionMenu :: editionMenu"></div>
+                </div>
+                <!--配色方案-->
+                <div th:replace="tools/colorMenu :: colorMenu"></div>
+                <!--用户信息-->
+                <div th:replace="tools/userMenu :: userMenu"></div>
+                <!--尾部-->
+                <div th:replace="tools/footer :: footerMenu"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //Echarts图表
+        var Chart1 = echarts.init(document.getElementById("echart1"));
+        Chart1.setOption({
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    data: [
+                        {value: 235, name: '视频广告'},
+                        {value: 274, name: '联盟广告'},
+                        {value: 310, name: '邮件营销'},
+                        {value: 335, name: '直接访问'},
+                        {value: 400, name: '搜索引擎'}
+                    ]
+                }
+            ]
+        });
+    </script>
+    <!-- <script>
+            NProgress.start();
+            setTimeout(function() { NProgress.done()}, 1000);
+         </script>
+     -->
+</body>
+</html>
