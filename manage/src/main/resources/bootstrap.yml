@@ -13,3 +13,9 @@ spring:
         file-extension: yaml
       discovery:
         server-addr: 127.0.0.1:8848
+ribbon:
+  ConnectTimeout: 2000
+  ReadTimeout: 5000
+feign:
+  sentinel:
+    enabled: true

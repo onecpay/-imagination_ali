@@ -16,4 +16,6 @@ public interface PaymentClient {
 
     @RequestMapping(value = "/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     void requestPayment(@RequestBody JSONObject requestJson);
+
+
 }

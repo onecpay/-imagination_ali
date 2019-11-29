@@ -1,0 +1,40 @@
+server:
+  port: 9518
+  servlet:
+    context-path: /gatway
+spring:
+  application:
+    name: gatway
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    #    添加到注册中心
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      default-filters:
+        - name: Hystrix
+          args:
+            name: default
+            fallbackUri: 'forward:/defaultFallback'
+      routes:
+        - id: payment-router
+          uri: lb://payment
+          predicates:
+            - Path=/product/**
+# hystrix 配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 2000
