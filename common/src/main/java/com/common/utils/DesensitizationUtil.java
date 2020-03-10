@@ -1,9 +1,5 @@
 package com.common.utils;
 
-
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
-
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -71,7 +67,8 @@ public class DesensitizationUtil {
    * @throws Exception
    */
   private static byte[] decryptBase64(String key) throws Exception {
-    return (new BASE64Decoder()).decodeBuffer(key);
+    //return (new BASE64Decoder()).decodeBuffer(key);
+    return null;
   }
 
   /**
@@ -82,7 +79,9 @@ public class DesensitizationUtil {
    * @throws Exception
    */
   private static String encryptBase64(byte[] key) throws Exception {
-    return (new BASE64Encoder()).encodeBuffer(key);
+    //return (new BASE64Encoder()).encodeBuffer(key);
+
+    return null;
   }
 
   private static Boolean isEmpty(String str) {

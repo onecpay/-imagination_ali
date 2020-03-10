@@ -2,7 +2,6 @@ package com.example.gateway.filter;
 
 
 import com.example.gateway.service.AgentAuthorizeService;
-import org.omg.CORBA.Object;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;

@@ -115,7 +115,7 @@ public class DesSign {
       Cipher cipher = Cipher.getInstance("DES");
       cipher.init(Cipher.ENCRYPT_MODE, key, sr);
       // 加密，并把字节数组编码成字符串
-      encryptedData = new sun.misc.BASE64Encoder().encode(cipher.doFinal(data.getBytes()));
+      //encryptedData = new sun.misc.BASE64Encoder().encode(cipher.doFinal(data.getBytes()));
     } catch (Exception e) {
       throw new RuntimeException("加密错误，错误信息：", e);
     }
@@ -141,8 +141,8 @@ public class DesSign {
       Cipher cipher = Cipher.getInstance("DES");
       cipher.init(Cipher.DECRYPT_MODE, key, sr);
       // 把字符串解码为字节数组，并解密
-      decryptedData =
-          new String(cipher.doFinal(new sun.misc.BASE64Decoder().decodeBuffer(cryptData)));
+     // decryptedData =
+      //    new String(cipher.doFinal(new sun.misc.BASE64Decoder().decodeBuffer(cryptData)));
     } catch (Exception e) {
       throw new RuntimeException("解密错误，错误信息：", e);
     }

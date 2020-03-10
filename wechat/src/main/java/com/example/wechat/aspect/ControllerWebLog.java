@@ -3,10 +3,8 @@ package com.example.wechat.aspect;
 import com.common.annotation.RestfulControllerLog;
 import com.common.utils.DateTimePattern;
 import com.common.utils.DateUtils;
-import com.common.utils.IdGen;
 import com.example.wechat.dao.WechatLogMapper;
 import com.example.wechat.entity.WechatLog;
-import com.example.wechat.utils.IpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -16,7 +14,6 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import sun.misc.Request;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -118,7 +115,7 @@ public class ControllerWebLog {
             WechatLog wechatLog = new WechatLog(1, threadInfo.get(REQUEST_METHOD), threadInfo.get(REQUEST_IP),
                     threadInfo.get(REQUEST_URL), threadInfo.get(REQUEST_PARAM), resp.toString(), DateUtils.getBusinsessDate(),
                     DateUtils.getBusinsessDate(), "微信服务请求日志");
-            wechatLog.setId(IdGen.uuidLong());
+            //wechatLog.setId(IdGen.uuidLong());
             wechatLogMapper.insert(wechatLog);
         }
         log.info("微信服务返回成功：IP:{},URI:{},METHOD:{},BODY:{}", threadInfo.get(REQUEST_IP), threadInfo.get(REQUEST_URL),

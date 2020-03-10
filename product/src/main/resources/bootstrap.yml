@@ -11,15 +11,15 @@ spring:
       discovery:
         enabled: true
         service-id: config
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:9500/eureka/eureka/
-  instance:
-    prefer-ip-address: true
-    instance-id: ${eureka.instance.ip-address}:${spring.application.name}:${eureka.instance.non-secure-port}
-    ip-address: 127.0.0.1
-    non-secure-port: 9514
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://127.0.0.1:9500/eureka/eureka/
+#  instance:
+#    prefer-ip-address: true
+#    instance-id: ${eureka.instance.ip-address}:${spring.application.name}:${eureka.instance.non-secure-port}
+#    ip-address: 127.0.0.1
+#    non-secure-port: 9514
     #    配置admin 监控
     metadata-map:
       management:

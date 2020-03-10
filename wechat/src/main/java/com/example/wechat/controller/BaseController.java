@@ -2,7 +2,6 @@ package com.example.wechat.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.common.dto.response.ResponseData;
-import netscape.javascript.JSObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.ModelAndView;
 
