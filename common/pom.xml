@@ -228,10 +228,10 @@
             <version>${alibaba.cps.version}</version>
         </dependency>
         <!--rpc dubbo-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-dubbo</artifactId>
-            <version>${alibaba.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-dubbo</artifactId>-->
+<!--            <version>${alibaba.version}</version>-->
+<!--        </dependency>-->
     </dependencies>
 </project>

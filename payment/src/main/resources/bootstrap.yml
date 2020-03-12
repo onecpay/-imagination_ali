@@ -5,12 +5,16 @@ server:
 spring:
   application:
     name: payment
+  profiles:
+    active: local
   cloud:
 #    添加到注册中心
     nacos:
       config:
         server-addr: 127.0.0.1:8848
         file-extension: yaml
+        group: LOCAL_GROUP
+        namespace: 3e92e194-2b89-41c1-9e9f-85588d15a544
       discovery:
         server-addr: 127.0.0.1:8848
     sentinel:
