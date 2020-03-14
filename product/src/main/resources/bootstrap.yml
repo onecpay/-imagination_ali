@@ -1,30 +1,18 @@
-server:
-  port: 9514
-  servlet:
-    context-path: /product
 spring:
+  application:
+    name: product
+  profiles:
+    active: local
   cloud:
-    config:
-      name: product
-      profile: local
-      label: develop
+    #    添加到注册中心
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        prefix: ${spring.application.name}
+        namespace: 3e92e194-2b89-41c1-9e9f-85588d15a544
+        group: LOCAL_GROUP
       discovery:
-        enabled: true
-        service-id: config
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://127.0.0.1:9500/eureka/eureka/
-#  instance:
-#    prefer-ip-address: true
-#    instance-id: ${eureka.instance.ip-address}:${spring.application.name}:${eureka.instance.non-secure-port}
-#    ip-address: 127.0.0.1
-#    non-secure-port: 9514
-    #    配置admin 监控
-    metadata-map:
-      management:
-        context-path: ${server.servlet.context-path}/actuator
-    leaseRenewalIntervalInSeconds: 10
-    health-check-url-path: ${server.servlet.context-path}/actuator/health
-    home-page-url-path: ${server.servlet.context-path}
-    status-page-url-path: ${server.servlet.context-path}/actuator/info
+        server-addr: 127.0.0.1:8848
+        namespace: 3e92e194-2b89-41c1-9e9f-85588d15a544
+        group: LOCAL_GROUP

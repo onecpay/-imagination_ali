@@ -1,31 +1,29 @@
-server:
-  port: 9516
-  servlet:
-    context-path: /wechat
 spring:
+  application:
+    name: wechat
+  profiles:
+    active: local
   cloud:
-    config:
-      name: wechat
-      profile: local
-      label: develop
+    #    添加到注册中心
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        prefix: ${spring.application.name}
+        namespace: 3e92e194-2b89-41c1-9e9f-85588d15a544
+        group: LOCAL_GROUP
       discovery:
-        enabled: true
-        service-id: config
-#    添加到注册中心
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:9500/eureka/eureka/
-  instance:
-    prefer-ip-address: true
-    instance-id: ${eureka.instance.ip-address}:${spring.application.name}:${eureka.instance.non-secure-port}
-    ip-address: 127.0.0.1
-    non-secure-port: 9516
-    #    配置admin 监控
-    metadata-map:
-      management:
-        context-path: ${server.servlet.context-path}/actuator
-    leaseRenewalIntervalInSeconds: 10
-    health-check-url-path: ${server.servlet.context-path}/actuator/health
-    home-page-url-path: ${server.servlet.context-path}
-    status-page-url-path: ${server.servlet.context-path}/actuator/info
+        server-addr: 127.0.0.1:8848
+        namespace: 3e92e194-2b89-41c1-9e9f-85588d15a544
+        group: LOCAL_GROUP
+#    sentinel:
+#      eager: true
+#      transport:
+#        dashboard: 127.0.0.1:8080
+#      datasource:
+#        ds1:
+#          nacos:
+#            server-addr: 127.0.0.1:8848
+#            dataId: ${spring.application.name}-flow-rules
+#            data-type: json
+#            rule-type: flow
