@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @author ONEC
+ *  path = "product",
  */
 @FeignClient(name = "product", path = "product", fallback = ProductClientFallback.class)
 public interface ProductClient {
@@ -25,7 +26,7 @@ public interface ProductClient {
     ResponseData requestCode(@RequestBody RequestData requestData);
 
     /**
-     * 获取短信验证码。
+     * 获取当前所有产品信息。
      *
      * @param requestData a
      * @return respdate

@@ -34,7 +34,8 @@ public class CommonRedirectController {
 
     @ApiOperation(value = "无权限跳转公共参数", notes = "跳转相应的文件：试图")
     @RequestMapping(value = "/common/{directory}/{respPage}", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView redirect(@PathVariable("directory") String directory, @PathVariable("respPage") String respPage, HttpServletRequest request) {
+    public ModelAndView redirect(@PathVariable("directory") String directory, @PathVariable("respPage") String respPage,
+                                 HttpServletRequest request) {
         request.setAttribute("bannerList", bannerService.bannerInfo());
         return respModeView(request, directory + "/" + respPage);
     }
@@ -42,7 +43,8 @@ public class CommonRedirectController {
     @PreAuthorize(value = "hasAuthority('ROLE_USER')")
     @ApiOperation(value = "权限跳转公共参数", notes = "跳转相应的文件：试图")
     @RequestMapping(value = "/permission/{directory}/{respPage}", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView redirectPermission(@PathVariable("directory") String directory, @PathVariable("respPage") String respPage, HttpServletRequest request) {
+    public ModelAndView redirectPermission(@PathVariable("directory") String directory,
+                                           @PathVariable("respPage") String respPage, HttpServletRequest request) {
         request.setAttribute("bannerList", bannerService.bannerInfo());
         return respModeView(request, "permission/" + directory + "/" + respPage);
     }

@@ -36,6 +36,7 @@ public class ProductController extends BaseController {
     @RequestMapping(value = "productList")
     public ResponseLayui productList(@RequestParam("page") Integer pageNo, @RequestParam("limit") Integer pageSize) {
         List<ProductInfoDto> productInfoDto = productService.productList(pageNo, pageSize);
+        log.info("获取产品服务的所有数据为：{}", productInfoDto.size());
         return ResponseLayui.ok(productInfoDto, productInfoDto.size());
     }
 

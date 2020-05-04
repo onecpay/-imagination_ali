@@ -33,6 +33,7 @@ public class ProductController extends BaseController {
     public ResponseData productList(@RequestBody RequestData requestData) {
 
         ProductDetail detail = JSONObject.parseObject(requestData.getBizContent(), ProductDetail.class);
+        log.info("产品服务：获取当前的所有的产品参数：{}", detail);
         return ResponseData.ok(JSONObject.toJSONString(productService.productList(detail.getType())));
     }
 
@@ -64,6 +65,4 @@ public class ProductController extends BaseController {
     }
 
 
-
-    /**********************************************运营平台产品管理************************************************************/
 }

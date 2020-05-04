@@ -48,7 +48,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductInfo productList(TypeEnum type) {
 
-        String redisKey = RedisKeyUtil.getKey(RedisKeyUtil.SERVICE_NAME_PRODUCT, KeyUtil.TABLE_BANNER_NAME_DETAIL, type.name());
+        String redisKey = RedisKeyUtil.getKey(RedisKeyUtil.SERVICE_NAME_PRODUCT, KeyUtil.TABLE_BANNER_NAME_DETAIL,
+                type.name());
         String productList = stringRedisTemplate.opsForValue().get(redisKey);
         if (StringUtils.isNotBlank(productList)) {
             return JSONObject.parseObject(productList, ProductInfo.class);
@@ -56,13 +57,15 @@ public class ProductServiceImpl implements ProductService {
         List<ProductDetail> detailList = detailMapper.selectDetailInfo(type);
         ProductInfo productInfo = new ProductInfo();
         productInfo.setDetailList(detailList);
-        stringRedisTemplate.opsForValue().set(redisKey, JSONObject.toJSONString(productInfo), RedisKeyUtil.getExiperTime(), TimeUnit.SECONDS);
+        stringRedisTemplate.opsForValue().set(redisKey, JSONObject.toJSONString(productInfo),
+                RedisKeyUtil.getExiperTime(), TimeUnit.SECONDS);
         return productInfo;
     }
 
     @Override
     public ProductInfo productId(ProductDetail productId) {
-        String redisKey = RedisKeyUtil.getKey(RedisKeyUtil.SERVICE_NAME_PRODUCT, KeyUtil.TABLE_BANNER_NAME_DETAIL, String.valueOf(productId.getId()));
+        String redisKey = RedisKeyUtil.getKey(RedisKeyUtil.SERVICE_NAME_PRODUCT, KeyUtil.TABLE_BANNER_NAME_DETAIL,
+                String.valueOf(productId.getId()));
         String productList = stringRedisTemplate.opsForValue().get(redisKey);
         if (StringUtils.isNotBlank(productList)) {
             return JSONObject.parseObject(productList, ProductInfo.class);

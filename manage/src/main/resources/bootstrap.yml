@@ -16,3 +16,6 @@ spring:
         server-addr: 127.0.0.1:8848
         namespace: 3e92e194-2b89-41c1-9e9f-85588d15a544
         group: LOCAL_GROUP
+server:
+  servlet:
+    context-path: /manage

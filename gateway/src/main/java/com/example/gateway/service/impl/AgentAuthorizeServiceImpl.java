@@ -14,6 +14,8 @@ public class AgentAuthorizeServiceImpl implements AgentAuthorizeService {
 
     @Override
     public boolean authorizeAgent() {
+        // 获取代理商的相关信息：
+
         return false;
     }
 }
