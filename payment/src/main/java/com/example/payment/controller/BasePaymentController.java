@@ -2,7 +2,7 @@ package com.example.payment.controller;
 
 import com.common.dto.response.ResponseData;
 import com.example.payment.exception.ExceptionHelper;
-import com.example.payment.service.order.base.BaseOrderDefaultService;
+import com.example.payment.service.online.base.BaseOnlineDefaultService;
 import com.example.payment.service.utils.AnalyticParameterService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +18,9 @@ public class BasePaymentController {
 
     @Autowired
     protected AnalyticParameterService analyticParameterService;
+
     @Autowired
-    protected Map<String, BaseOrderDefaultService> payments;
+    protected Map<String, BaseOnlineDefaultService> serviceApi;
 
 
 

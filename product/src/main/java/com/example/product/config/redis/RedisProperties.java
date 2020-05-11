@@ -1,7 +1,7 @@
 //package com.example.product.config.redis;
 //
 //import lombok.extern.slf4j.Slf4j;
-//import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+//import org.apache.commons.pool2.route.GenericObjectPoolConfig;
 //import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;

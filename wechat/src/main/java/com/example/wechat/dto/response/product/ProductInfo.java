@@ -1,8 +1,5 @@
 package com.example.wechat.dto.response.product;
 
-import com.example.wechat.dto.response.ProductDetail;
-import com.example.wechat.dto.response.ProductParam;
-import com.example.wechat.dto.response.ProductSettle;
 import lombok.Data;
 
 import java.util.List;

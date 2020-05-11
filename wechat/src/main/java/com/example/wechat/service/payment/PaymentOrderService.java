@@ -1,4 +1,4 @@
-package com.example.wechat.service.product;
+package com.example.wechat.service.payment;
 
 import com.example.wechat.dto.request.ProductDto;
 import com.example.wechat.dto.response.product.ProductDetail;
@@ -8,9 +8,11 @@ import java.util.List;
 
 
 /**
+ * 微信商戶交易交互。
+ * @since 20200511
  * @author ONEC
  */
-public interface ProductInfoService {
+public interface PaymentOrderService {
 
 
     /**

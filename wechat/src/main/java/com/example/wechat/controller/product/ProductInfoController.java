@@ -4,7 +4,7 @@ import com.common.annotation.RestfulControllerLog;
 import com.common.dto.response.ResponseData;
 import com.example.wechat.controller.BaseController;
 import com.example.wechat.dto.request.ProductDto;
-import com.example.wechat.dto.response.ProductDetail;
+import com.example.wechat.dto.response.product.ProductDetail;
 import com.example.wechat.dto.response.product.ProductInfo;
 import com.example.wechat.enums.TypeEnum;
 import com.example.wechat.service.product.ProductInfoService;

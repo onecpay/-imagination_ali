@@ -228,10 +228,15 @@
             <version>${alibaba.cps.version}</version>
         </dependency>
         <!--rpc dubbo-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-dubbo</artifactId>-->
-<!--            <version>${alibaba.version}</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-dubbo</artifactId>-->
+        <!--            <version>${alibaba.version}</version>-->
+        <!--        </dependency>-->
+        <!--gosn依赖-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -21,9 +21,13 @@ public class RequestData implements Serializable {
     @NotEmpty(message = "charset必传")
     private String charset;
 
+    @NotEmpty(message = "sign必传")
     private String sign;
 
     private String source;
+
+    @NotEmpty(message = "orgNo必传")
+    private String orgNo;
 
     @NotEmpty(message = "service必传")
     private String service;
