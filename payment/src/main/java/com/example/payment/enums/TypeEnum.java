@@ -11,7 +11,7 @@ import lombok.Setter;
  */
 @Getter
 @AllArgsConstructor
-public enum PaymentTypeEnum {
+public enum TypeEnum {
 
     /**********************快捷api交易模式************/
     // 绑定交易卡

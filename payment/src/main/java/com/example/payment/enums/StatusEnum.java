@@ -2,6 +2,8 @@ package com.example.payment.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * payment 服务状态设计
@@ -11,12 +13,13 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum PaymentStatusEnum {
+@NoArgsConstructor
+public enum StatusEnum {
 
     /**
      * 申请状态未处理
      */
-    INIT,
+    INIT(1, ""),
     /**
      * 申请状态处理中
      */
@@ -37,6 +40,10 @@ public enum PaymentStatusEnum {
      * 产品状态正常
      */
     AVAILABLE;
+
+    private int index;
+
+    private String msg;
 
 
 }

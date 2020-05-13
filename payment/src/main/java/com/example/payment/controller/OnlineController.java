@@ -3,9 +3,12 @@ package com.example.payment.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.common.dto.request.RequestData;
 import com.common.dto.response.ResponseData;
+import com.common.utils.SpringContextHolder;
 import com.example.payment.dto.request.OnlineParam;
 import com.example.payment.dto.response.ResponseOnline;
-import com.example.payment.enums.PaymentTypeEnum;
+import com.example.payment.enums.TypeEnum;
+import com.example.payment.service.online.base.OnlineBaseService;
+import com.google.gson.JsonObject;
 import io.swagger.annotations.Api;
 
 import io.swagger.annotations.ApiOperation;
@@ -35,21 +38,23 @@ public class OnlineController extends BasePaymentController {
      */
     @ApiOperation(value = "payment", tags = "公共入口")
     @RequestMapping(value = "/api/payment")
-    public ResponseData payment(@RequestBody @Valid RequestData requestData) {
+    public ResponseData payment(@RequestBody RequestData requestData) {
 
         // 数据及商户验签：
-        OnlineParam onlineParam = null;
+        OnlineParam onlineParam = JSONObject.parseObject(requestData.getBizContent(), OnlineParam.class);
         // 请求上游交易：
-        ResponseOnline responseOrder = null;
+        ResponseOnline responseOnline = null;
+        TypeEnum requestMethod = TypeEnum.valueOf(requestData.getService());
 
-        PaymentTypeEnum requestMethod = PaymentTypeEnum.valueOf(requestData.getService());
+        OnlineBaseService onlineBaseService = SpringContextHolder.getBean(requestMethod.name());
+        onlineBaseService.execute(onlineParam);
         try {
-            responseOrder = serviceApi.get(requestMethod.name()).execute(onlineParam);
+            responseOnline = serviceApi.get(requestMethod.name()).execute(onlineParam);
         } catch (Exception e) {
             e.printStackTrace();
             // 异常处理
             return responseParam(log, e);
         }
-        return responseParam(JSONObject.toJSONString(responseOrder));
+        return responseParam(JSONObject.toJSONString(responseOnline));
     }
 }

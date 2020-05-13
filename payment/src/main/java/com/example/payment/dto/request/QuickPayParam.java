@@ -5,7 +5,7 @@ package com.example.payment.dto.request;
  *
  * @author ONEC
  */
-public class QuickPayParam extends OnlineParam {
+public class QuickPayParam  {
 
 
 }

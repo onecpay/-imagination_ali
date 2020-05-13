@@ -1,27 +1,26 @@
-package com.example.payment.service.online.quickpay;
+package com.example.payment.service.online.alipay;
 
 import com.example.payment.dto.request.OnlineParam;
-import com.example.payment.dto.request.QuickPayParam;
 import com.example.payment.dto.response.ResponseOnline;
 import com.example.payment.service.online.base.BaseOnlineDefaultService;
 import org.springframework.stereotype.Service;
 
 /**
- * 快捷业务订单逻辑
+ * 处理阿里云订单业务逻辑
  *
  * @author ONEC
  */
 @Service
-public class OnlineOrderQuickpayService extends BaseOnlineDefaultService {
-
+public class OnlineOrderAliPayService extends BaseOnlineDefaultService {
 
     @Override
     public ResponseOnline execute(OnlineParam onlineParam) {
 
-        // 快捷路由：
-        if (onlineParam instanceof QuickPayParam) {
 
-        }
+        String channelNo = "";
+        String channelMerchant = getChannelMerchant(channelNo);
+        // 分配刀订单路由：
+        channelOrder.get(channelMerchant).requestAlipay();
         return null;
     }
 }

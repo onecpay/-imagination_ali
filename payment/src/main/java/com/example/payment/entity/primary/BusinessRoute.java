@@ -1,7 +1,7 @@
 package com.example.payment.entity.primary;
 
 
-import com.example.payment.enums.PaymentStatusEnum;
+import com.example.payment.enums.StatusEnum;
 import lombok.Data;
 import org.springframework.data.annotation.Version;
 
@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 行业类别码路由：
+ * 业务类别码：
  *
  * @author ONEC
  */
@@ -79,7 +79,7 @@ public class BusinessRoute implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "business_status", length = 32)
-    private PaymentStatusEnum businessStatus;
+    private StatusEnum businessStatus;
 
 
 }

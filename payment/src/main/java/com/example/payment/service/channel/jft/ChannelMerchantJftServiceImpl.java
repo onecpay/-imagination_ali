@@ -1,7 +1,7 @@
 package com.example.payment.service.channel.jft;
 
 import com.example.payment.dto.response.ResponseMerchant;
-import com.example.payment.service.channel.base.BaseChannelMerchatDefaultService;
+import com.example.payment.service.channel.base.BaseChannelMerchantDefaultService;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,11 +10,12 @@ import java.util.Map;
 
 
 /**
- * 先锋支付上游通道对接
+ * 佳付通通道对接
+ *
  * @author ONEC
  */
-@Service("channel_xf")
-public class ChannelMerchantJftServiceImpl extends BaseChannelMerchatDefaultService {
+@Service("MERCHANT_JFT")
+public class ChannelMerchantJftServiceImpl extends BaseChannelMerchantDefaultService {
 
 
     @Override
@@ -24,7 +25,7 @@ public class ChannelMerchantJftServiceImpl extends BaseChannelMerchatDefaultServ
 
     @Override
     public boolean needRegister() {
-        return false;
+        return true;
     }
 
     @Override

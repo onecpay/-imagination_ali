@@ -5,7 +5,7 @@ package com.example.payment.service.channel.base;
  *
  * @author ONEC
  */
-public abstract class BaseChannelMerchatDefaultService implements BaseChannelMerchantService {
+public abstract class BaseChannelMerchantDefaultService implements BaseChannelMerchantService {
 
     // 实现默认方法：
 

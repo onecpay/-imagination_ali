@@ -1,11 +1,10 @@
 package com.example.payment.entity.primary;
 
-import com.example.payment.enums.PaymentStatusEnum;
+import com.example.payment.enums.StatusEnum;
 import lombok.Data;
 import org.springframework.data.annotation.Version;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -147,13 +146,13 @@ public class OnlineOrder implements Serializable {
      * 交易订单状态
      */
     @Column(name = "order_status")
-    private PaymentStatusEnum orderStatus;
+    private StatusEnum orderStatus;
 
     /**
      * 订单出款状态
      */
     @Column(name = "withdrew_status")
-    private PaymentStatusEnum withDrewStatus;
+    private StatusEnum withDrewStatus;
 
     /**
      * 交易卡号

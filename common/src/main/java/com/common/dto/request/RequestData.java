@@ -26,9 +26,6 @@ public class RequestData implements Serializable {
 
     private String source;
 
-    @NotEmpty(message = "orgNo必传")
-    private String orgNo;
-
     @NotEmpty(message = "service必传")
     private String service;
 

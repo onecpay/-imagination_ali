@@ -717,7 +717,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				return false;
 			}
 
-			// Detect buggy property enumeration order in older V8 versions.
+			// Detect buggy property enumeration online in older V8 versions.
 
 			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
 			var test1 = new String('abc');  // eslint-disable-line no-new-wrappers

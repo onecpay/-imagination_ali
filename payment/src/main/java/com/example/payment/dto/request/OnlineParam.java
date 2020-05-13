@@ -3,6 +3,8 @@ package com.example.payment.dto.request;
 import lombok.Builder;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * 订单参数
  *
@@ -10,12 +12,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class OnlineParam<T> {
-    /**
-     * 机构号
-     */
-    public String orgNo;
-
+public class OnlineParam implements Serializable {
     /**
      * 商户号
      */

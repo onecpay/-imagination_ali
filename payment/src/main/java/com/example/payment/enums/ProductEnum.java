@@ -13,25 +13,33 @@ import lombok.ToString;
 @ToString
 public enum ProductEnum {
 
-  /**
-   * 申请状态未处理
-   */
-  WEIXIN("微信支付", 1),
-  /**
-   * 申请状态处理中
-   */
-  ALIPAY("阿里支付", 2),
-  /**
-   * 申请状态失败
-   */
-  QUICK("快捷支付", 3),
-  /**
-   * 申请状态成功
-   */
-  UNIONPAY("云闪付", 4);
+    /**
+     * 所有产品
+     */
+    DEFAULT("所有产品", 0),
+    /**
+     * 微信支付
+     */
+    WEIXIN("微信支付", 1),
+    /**
+     * 阿里支付
+     */
+    ALIPAY("阿里支付", 2),
+    /**
+     * 快捷支付
+     */
+    QUICK("快捷支付", 3),
+    /**
+     * 申请状态成功
+     */
+    REPAYMENT("还款", 4),
+    /**
+     * 申请状态成功
+     */
+    UNIONPAY("云闪付", 5);
 
-  private String mesg;
+    private String msg;
 
-  private Integer index;
+    private Integer index;
 
 }
