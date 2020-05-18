@@ -7,13 +7,15 @@ import java.util.Optional;
 
 /**
  * primary 公共请求dao
+ *
  * @author ONEC
  */
 @NoRepositoryBean
-public interface BaseRepository<T,ID> extends JpaRepository<T,ID> {
+public interface BaseRepository<T, ID> extends JpaRepository<T, ID> {
 
     /**
      * 通过id 查询实体返回optional 容器
+     *
      * @param id
      * @return
      */
@@ -21,11 +23,12 @@ public interface BaseRepository<T,ID> extends JpaRepository<T,ID> {
     Optional<T> findById(ID id);
 
     /**
-     *  保存给对象并且返回
+     * 保存给对象并且返回
+     *
      * @param entity
      * @param <S>
      * @return
      */
     @Override
-    <S extends  T> S save(S entity);
+    <S extends T> S save(S entity);
 }

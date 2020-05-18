@@ -19,6 +19,7 @@ import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 配置第二数据源
@@ -52,7 +53,7 @@ public class SecondaryDataConfig {
 
     @Bean("secondaryEntityManage")
     public EntityManager entityManage(EntityManagerFactoryBuilder builder) {
-        return secondaryEntityManageFactory(builder).getObject().createEntityManager();
+        return Objects.requireNonNull(secondaryEntityManageFactory(builder).getObject()).createEntityManager();
     }
 
 
@@ -72,6 +73,6 @@ public class SecondaryDataConfig {
 
     @Bean("secondaryTransactionManager")
     public PlatformTransactionManager secondaryTransactionManager(EntityManagerFactoryBuilder builder) {
-        return new JpaTransactionManager(secondaryEntityManageFactory(builder).getObject());
+        return new JpaTransactionManager(Objects.requireNonNull(secondaryEntityManageFactory(builder).getObject()));
     }
 }

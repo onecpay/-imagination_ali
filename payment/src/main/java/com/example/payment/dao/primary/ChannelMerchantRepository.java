@@ -6,7 +6,7 @@ import org.springframework.data.repository.RepositoryDefinition;
 /**
  * @author ONEC
  */
-@RepositoryDefinition(domainClass = ChannelMerchant.class,idClass = Long.class)
+@RepositoryDefinition(domainClass = ChannelMerchant.class, idClass = Long.class)
 public interface ChannelMerchantRepository extends BaseRepository<ChannelMerchant, Long> {
 
 }

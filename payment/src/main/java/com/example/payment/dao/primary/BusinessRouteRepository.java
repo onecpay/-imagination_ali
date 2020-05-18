@@ -6,7 +6,7 @@ import org.springframework.data.repository.RepositoryDefinition;
 /**
  * @author ONEC
  */
-@RepositoryDefinition(domainClass = BusinessRoute.class,idClass = Long.class)
+@RepositoryDefinition(domainClass = BusinessRoute.class, idClass = Long.class)
 public interface BusinessRouteRepository extends BaseRepository<BusinessRoute, Long> {
 
 }

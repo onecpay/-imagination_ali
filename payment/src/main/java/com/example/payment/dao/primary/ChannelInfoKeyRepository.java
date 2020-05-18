@@ -1,6 +1,5 @@
 package com.example.payment.dao.primary;
 
-import com.example.payment.entity.primary.ChannelInfo;
 import com.example.payment.entity.primary.ChannelInfoKey;
 import org.springframework.data.repository.RepositoryDefinition;
 

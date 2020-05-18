@@ -1,7 +1,7 @@
 package com.example.payment.service.channel.xf;
 
 import com.example.payment.dto.response.ResponseMerchant;
-import com.example.payment.service.channel.base.BaseChannelMerchatDefaultService;
+import com.example.payment.service.channel.base.BaseChannelMerchantDefaultService;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +13,8 @@ import java.util.Map;
  * 先锋支付上游通道对接
  * @author ONEC
  */
-@Service("channel_xf")
-public class ChannelMerchantXfServiceImpl extends BaseChannelMerchatDefaultService {
+@Service("MERCHANT_XF")
+public class ChannelMerchantXfServiceImpl extends BaseChannelMerchantDefaultService {
 
 
     @Override

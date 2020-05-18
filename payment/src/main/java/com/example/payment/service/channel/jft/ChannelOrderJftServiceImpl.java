@@ -12,7 +12,7 @@ import java.math.RoundingMode;
  * 先锋支付上游通道对接
  * @author ONEC
  */
-@Service("ORDER_XF")
+@Service("ORDER_JFT")
 public class ChannelOrderJftServiceImpl extends BaseChannelOrderDefaultService {
 
     @Override

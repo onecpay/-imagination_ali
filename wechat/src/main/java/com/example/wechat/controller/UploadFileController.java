@@ -55,7 +55,7 @@ public class UploadFileController {
      */
     @PostMapping("/customerInfo")
     @ResponseBody
-    @PreAuthorize(value = "hasAuthority('ROLE_USER')")
+    //@PreAuthorize(value = "hasAuthority('ROLE_USER')")
     public ResponseData customerInfo(@RequestParam(value = "customerInfo") MultipartFile file) {
         log.info("文件上传：");
         if (file.isEmpty()) {

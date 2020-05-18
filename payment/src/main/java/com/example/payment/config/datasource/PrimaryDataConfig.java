@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 配置主数据源
@@ -53,7 +54,7 @@ public class PrimaryDataConfig {
     @Primary
     @Bean("primaryEntityManage")
     public EntityManager entityManage(EntityManagerFactoryBuilder builder) {
-        return primaryEntityManageFactory(builder).getObject().createEntityManager();
+        return Objects.requireNonNull(primaryEntityManageFactory(builder).getObject()).createEntityManager();
     }
 
 
@@ -73,6 +74,6 @@ public class PrimaryDataConfig {
     @Primary
     @Bean("primaryTransactionManager")
     public PlatformTransactionManager primaryTransactionManager(EntityManagerFactoryBuilder builder) {
-        return new JpaTransactionManager(primaryEntityManageFactory(builder).getObject());
+        return new JpaTransactionManager(Objects.requireNonNull(primaryEntityManageFactory(builder).getObject()));
     }
 }

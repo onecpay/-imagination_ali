@@ -1,7 +1,6 @@
 package com.example.payment.dao.primary;
 
 import com.example.payment.entity.primary.Business;
-import com.example.payment.entity.primary.BusinessRoute;
 import org.springframework.data.repository.RepositoryDefinition;
 
 /**
