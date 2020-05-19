@@ -27,13 +27,13 @@ public class BaseInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String uri = request.getRequestURI();
         String ip = IpUtil.getIpAddrByRequest(request);
-        logger.info("用户访问地址: {}, 来路地址: {}", uri, ip);
+        //logger.info("用户访问地址: {}, 来路地址: {}", uri, ip);
         // 处理404 等：
-        if (errorCodeList.contains(response.getStatus())) {
-            request.setAttribute("respMsg", response.getStatus());
-            response.sendRedirect("/wechat/common/failed/failed");
-            return false;
-        }
+//        if (errorCodeList.contains(response.getStatus())) {
+//            request.setAttribute("respMsg", response.getStatus());
+//            response.sendRedirect("/wechat/common/failed/failed");
+//            return false;
+//        }
         return true;
     }
 

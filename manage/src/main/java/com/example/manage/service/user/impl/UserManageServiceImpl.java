@@ -5,6 +5,7 @@ import com.example.manage.dto.UserInfoDto;
 import com.example.manage.entity.UserInfo;
 import com.example.manage.exception.ManageException;
 import com.example.manage.service.user.UserManageService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -42,9 +43,17 @@ public class UserManageServiceImpl implements UserManageService {
      *
      * @param userInfo
      */
+    @RequiresPermissions("PN0001")
     @Override
-    public void updateUserId(UserInfo userInfo) {
-        userRepository.saveAndFlush(userInfo);
+    public void updateUserId(UserInfoDto userInfoDto) {
+        Optional<UserInfo> userInfo = userRepository.findById(userInfoDto.getId());
+        if (userInfo.isPresent()) {
+            UserInfo updateInfo = userInfo.get();
+            updateInfo.setStatus(userInfoDto.getStatus());
+            userRepository.saveAndFlush(updateInfo);
+        } else {
+            throw new ManageException(1000, "請求商戶訂單有無");
+        }
     }
 
     /**
@@ -52,8 +61,10 @@ public class UserManageServiceImpl implements UserManageService {
      *
      * @param userInfo
      */
+    @RequiresPermissions("PN0001")
     @Override
-    public void addUser(UserInfoDto userInfo) {
-
+    public void addUser(UserInfoDto userInfoDto) {
+        UserInfo userInfo = new UserInfo();
+        userRepository.save(userInfo);
     }
 }

@@ -97,7 +97,7 @@ public class ControllerWebLog {
         requestMap.put(START_TIME, DateTimePattern.receiveTime(LocalDateTime.now(), "yyyy-MM-dd HH:ss:mm"));
 
         threadLocal.set(requestMap);
-        log.info("微信服务请求：IP:{},URI:{},METHOD:{},BODY:{}", requestMap.get(REQUEST_IP), requestMap.get(REQUEST_URL),
+        log.info("【微信服务请求】：IP:【{}】,URI:【{}】,METHOD:【{}】,BODY:【{}】", requestMap.get(REQUEST_IP), requestMap.get(REQUEST_URL),
                 requestMap.get(REQUEST_METHOD), requestMap.get(REQUEST_PARAM));
     }
 
@@ -118,7 +118,7 @@ public class ControllerWebLog {
             //wechatLog.setId(IdGen.uuidLong());
             wechatLogMapper.insert(wechatLog);
         }
-        log.info("微信服务返回成功：IP:{},URI:{},METHOD:{},BODY:{}", threadInfo.get(REQUEST_IP), threadInfo.get(REQUEST_URL),
+        log.info("【微信服务】返回成功：IP:【{}】,URI:【{}】,METHOD:【{}】,BODY:【{}】", threadInfo.get(REQUEST_IP), threadInfo.get(REQUEST_URL),
                 threadInfo.get(REQUEST_METHOD), resp.toString());
         /**
          * 必须清除

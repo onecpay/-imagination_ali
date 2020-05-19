@@ -111,7 +111,7 @@
     var countA = [];
     var uploadCountDom = document.getElementById("uploadCount");
     weui.uploader('#uploader', {
-        url: "/wechat/uploadFile/customerInfo",
+        url: "/uploadFile/customerInfo",
         auto: true,
         type: 'file',
         fileVal: 'customerInfo',
@@ -202,7 +202,7 @@
         formData["imageIds"] = countA;
 
         $.ajax({
-            url: '/wechat/customer/extra',
+            url: '/customer/extra',
             method: 'post',
             data: JSON.stringify(formData),
             contentType: "application/json",
@@ -211,7 +211,7 @@
             success: function (result) {
                 if (10000 === result.subCode) {
                     $.toast(result.data);
-                    window.location.href = "/wechat/permission/personal/customer";
+                    window.location.href = "/permission/personal/customer";
                 } else {
                     $.toast(result.data, 3000);
                 }

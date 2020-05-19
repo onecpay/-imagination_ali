@@ -27,7 +27,7 @@
                     <!--开启冻结-->
                     <script type="text/html" id="switchUser">
                         <input type="checkbox" name="status" value="{{d.status}}" id="{{d.id}}" lay-skin="switch"
-                               lay-text="冻结|正常" lay-filter="userStatus" {{ d.status==='FREEZE' ? 'checked' : '' }}>
+                               lay-text="冻结|正常" lay-filter="userStatus" {{ d.status==='1' ? 'checked' : '' }}>
                     </script>
                     <!--开启编辑-->
                     <script type="text/html" id="barDemo">
@@ -49,11 +49,10 @@
     <script type="text/javascript" th:inline="none">
         layui.use(['element', 'table', 'layer'], function () {
             var $ = layui.jquery, form = layui.form, table = layui.table, layer = layui.layer;
-
             /* 展示用户数据表*/
             table.render({
                 elem: '#userDetail'
-                , url: '/manage/user/userList'
+                , url: '/user/userList'
                 , toolbar: '#toolbarUser'
                 , title: '用户信息表'
                 , cellMinWidth: 120
@@ -82,10 +81,10 @@
             /* 监听冻结操作*/
             form.on('switch(userStatus)', function () {
                 var status = this.value;
-                if (this.value === 'FREEZE') {
-                    status = 'AVAILABLE';
+                if (this.value === '1') {
+                    status = '0';
                 } else {
-                    status = 'FREEZE';
+                    status = '1';
                 }
                 var data = {"id": this.id, "status": status};
                 $.ajax({
@@ -94,9 +93,9 @@
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(data),
                     dataType: 'json',
-                    url: "/manage/common/user/addUser",
+                    url: "/user/updateUser",
                     success: function (result) {
-                        layer.alert("修改结果：" + result)
+                        layer.alert("修改结果：" + result.msg)
                     },
                     error: function (result) {
                         layer.alert("请求修改异常：" + result)
@@ -121,7 +120,7 @@
                             type: 2
                             , title: "成员新增"
                             , closeBtn: 1
-                            , area: ['480px', '560px']
+                            // , area: ['480px', '560px']
                             , shade: 0
                             , id: 'LAY_layuipro' //设定一个id，防止重复弹出
                             , btnAlign: 'c'

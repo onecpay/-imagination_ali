@@ -6,6 +6,7 @@ import com.example.manage.exception.ManageException;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -20,7 +21,7 @@ import java.util.Map;
  *
  * @author ONEC
  */
-@Component
+@Configuration
 @Aspect
 @Slf4j
 public class RestControllerLog {
@@ -60,7 +61,7 @@ public class RestControllerLog {
                 RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = requestAttribute.getRequest();
         // 记录请求类容：
-        log.info("服务请求URL:{},请求IP:{},请求方法METHOD:{},", request.getRequestURL(),
+        log.info("管理平台服务请求URL:{},请求IP:{},请求方法METHOD:{},", request.getRequestURL(),
                 request.getRemoteAddr(), joinPoint.getSignature().getName());
 
         // 开始时间。
@@ -77,7 +78,7 @@ public class RestControllerLog {
         }
         threadInfo.put(REQUEST_PARAMS, requestStr.toString());
         threadLocal.set(threadInfo);
-        log.info("{}接口开始调用:requestData={}", controllerLog.name(), threadInfo.get(REQUEST_PARAMS));
+        log.info("管理平台【{}】接口开始调用:requestData=【{}】", controllerLog.name(), threadInfo.get(REQUEST_PARAMS));
 
     }
 
@@ -90,25 +91,25 @@ public class RestControllerLog {
 
         }
         threadLocal.remove();
-        log.info("{}接口结束调用:耗时={}ms,result={}", controllerLog.name(),
+        log.info("管理平台【{}】接口结束调用:耗时【{}】ms,result=【{}】", controllerLog.name(),
                 takeTime, object);
 
     }
 
-    /**
-     * 配置后置通知,aspectServiceLog()上注册的切入点
-     *
-     * @After :后置通知
-     * @Around ： 环绕通知：
-     * @AfterReturning ： 后置返回通知：
-     * @AfterThrowing(pointcut="(", throwing="ex")： 抛出异常通知
-     */
-    @AfterReturning(value = "aspectServiceLog()", returning = "object")
-    public void responseParam(Object object) {
-        if (log.isInfoEnabled()) {
-            log.info("通知返回数据：{} ", object);
-        }
-    }
+//    /**
+//     * 配置后置通知,aspectServiceLog()上注册的切入点
+//     *
+//     * @After :后置通知
+//     * @Around ： 环绕通知：
+//     * @AfterReturning ： 后置返回通知：
+//     * @AfterThrowing(pointcut="(", throwing="ex")： 抛出异常通知
+//     */
+//    @AfterReturning(value = "aspectServiceLog()", returning = "object")
+//    public void responseParam(Object object) {
+//        if (log.isInfoEnabled()) {
+//            log.info("通知返回数据：{} ", object);
+//        }
+//    }
 
     /**
      * controller异常：切入
@@ -131,9 +132,9 @@ public class RestControllerLog {
      * @param joinPoint
      * @param controllerLog
      */
-    @Around(value = "aspectServiceLog() && @annotation(controllerLog)")
-    public void responseAround(JoinPoint joinPoint, RestfulControllerLog controllerLog) {
-
-
-    }
+//    @Around(value = "aspectServiceLog() && @annotation(controllerLog)")
+//    public void responseAround(JoinPoint joinPoint, RestfulControllerLog controllerLog) {
+//
+//
+//    }
 }

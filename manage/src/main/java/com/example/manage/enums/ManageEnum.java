@@ -10,11 +10,11 @@ public enum ManageEnum {
     /**
      * 可用状态.
      */
-    AVAILABLE("正常状态", 1),
+    AVAILABLE("正常状态", 0),
     /**
      * 可用状态.
      */
-    FREEZE("冻结状态", 2);
+    FREEZE("冻结状态", 1);
 
     private String name;
     private Integer index;

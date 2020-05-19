@@ -34,4 +34,7 @@ public class ResponseLayui<T> implements Serializable {
         return new ResponseLayui<>("SUCCESS", 0, size, o);
     }
 
+    public static ResponseLayui<Object> error(String msg) {
+        return new ResponseLayui<>(msg, 0, 0, null);
+    }
 }

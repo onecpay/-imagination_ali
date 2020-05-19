@@ -32,7 +32,7 @@ public interface UserManageService {
      * @param userInfo
      * @return
      */
-    void updateUserId(UserInfo userInfo);
+    void updateUserId(UserInfoDto userInfo);
 
 
     /**
